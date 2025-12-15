@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ark Project | Celestial Ascended</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Дополнительные стили для страницы Ark */
+        .ark-page .hero {
+            padding: 60px 0 40px;
+        }
+        
+        .ark-page .hero-logo-section {
+            margin-bottom: 20px;
+        }
+        
+        .ark-page .hero-title .line-1 {
+            font-size: 3rem;
+            margin-bottom: 5px;
+        }
+        
+        .ark-page .hero-title .line-2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .ark-page .hero-title .line-3 {
+            font-size: 4rem;
+        }
+        
+        .circular-map-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin: 0 auto 40px;
+        }
+        
+        .circular-map {
+            width: 100%;
+            height: 650px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            border: 4px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 
+                0 0 40px rgba(255, 215, 0, 0.2),
+                0 0 80px rgba(0, 204, 255, 0.15),
+                inset 0 0 60px rgba(0, 0, 0, 0.5);
+            animation: mapGlow 4s infinite alternate;
+        }
+        
+        @keyframes mapGlow {
+            0% {
+                box-shadow: 
+                    0 0 40px rgba(255, 215, 0, 0.2),
+                    0 0 80px rgba(0, 204, 255, 0.15),
+                    inset 0 0 60px rgba(0, 0, 0, 0.5);
+            }
+            100% {
+                box-shadow: 
+                    0 0 60px rgba(255, 215, 0, 0.3),
+                    0 0 100px rgba(0, 204, 255, 0.25),
+                    0 0 140px rgba(255, 51, 102, 0.1),
+                    inset 0 0 80px rgba(0, 0, 0, 0.6);
+            }
+        }
+        
+        .circular-map img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 5s ease;
+        }
+        
+        .circular-map:hover img {
+            transform: scale(1.05);
+        }
+        
+        .biome-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+        
+        .info-panel {
+            background: linear-gradient(145deg, rgba(17, 17, 34, 0.9), rgba(34, 34, 68, 0.9));
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .info-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--epic-gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .info-panel:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .info-panel:hover::before {
+            opacity: 1;
+        }
+        
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .biome-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px currentColor;
+        }
+        
+        .biome-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            color: var(--text);
+            flex: 1;
+        }
+        
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 2px solid;
+        }
+        
+        .sub-biomes {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .sub-biomes h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .sub-biome-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .sub-biome-tag {
+            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Цвета биомов */
+        .biome-aellis { border-left: 4px solid #00cc88; }
+        .biome-aellis .biome-icon { background: #00cc88; }
+        .biome-aellis .status-badge { background: rgba(255, 51, 102, 0.15); color: #ff3366; border-color: #ff3366; }
+        
+        .biome-zenithar { border-left: 4px solid #ff3366; }
+        .biome-zenithar .biome-icon { background: #ff3366; }
+        .biome-zenithar .status-badge { background: rgba(255, 51, 102, 0.15); color: #ff3366; border-color: #ff3366; }
+        
+        .biome-helis { border-left: 4px solid #ff9900; }
+        .biome-helis .biome-icon { background: #ff9900; }
+        .biome-helis .status-badge { background: rgba(255, 153, 0, 0.15); color: #ff9900; border-color: #ff9900; }
+        
+        .biome-yotun { border-left: 4px solid #00ccff; }
+        .biome-yotun .biome-icon { background: #00ccff; }
+        .biome-yotun .status-badge { background: rgba(255, 153, 0, 0.15); color: #ff9900; border-color: #ff9900; }
+        
+        .biome-kailo { border-left: 4px solid #47532b; }
+        .biome-kailo .biome-icon { background: #47532b; }
+        .biome-kailo .status-badge { background: rgba(255, 153, 0, 0.15); color: #ff9900; border-color: #ff9900; }
+        
+        .biome-umbra { border-left: 4px solid #333333; }
+        .biome-umbra .biome-icon { background: #333333; color: #cccccc; }
+        .biome-umbra .status-badge { background: rgba(0, 102, 255, 0.15); color: #0066ff; border-color: #0066ff; }
+        
+        .biome-astral { border-left: 4px solid #9b59b6; }
+        .biome-astral .biome-icon { background: #9b59b6; }
+        .biome-astral .status-badge { background: rgba(0, 0, 0, 0.3); color: #fff; border-color: #fff; }
+        
+        .biome-rift { border-left: 4px solid #000; }
+        .biome-rift .biome-icon { background: #000; color: #ff3366; }
+        .biome-rift .status-badge { background: rgba(0, 0, 0, 0.5); color: #fff; border-color: #fff; }
+        
+        .biome-terra { border-left: 4px solid #cccccc; }
+        .biome-terra .biome-icon { background: #cccccc; color: #1a1a1a; }
+        .biome-terra .status-badge { background: rgba(0, 204, 136, 0.15); color: #00cc88; border-color: #00cc88; }
+        
+        /* Специальная панель для EndSpeal */
+        .endspeal-panel {
+            background: linear-gradient(145deg, rgba(17, 17, 34, 0.95), rgba(34, 34, 68, 0.95));
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
+        }
+        
+        .endspeal-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .endspeal-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .endspeal-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--gold);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .endspeal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .endspeal-structure {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .endspeal-function {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .endspeal-function h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .endspeal-function ul {
+            color: var(--text-secondary);
+            padding-left: 20px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .endspeal-function li {
+            margin-bottom: 8px;
+        }
+        
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .ark-page .hero-title .line-1 {
+                font-size: 2.2rem;
+            }
+            
+            .ark-page .hero-title .line-2 {
+                font-size: 1.2rem;
+            }
+            
+            .ark-page .hero-title .line-3 {
+                font-size: 3rem;
+            }
+            
+            .ark-page .hero-description {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+            
+            .circular-map-container {
+                max-width: 90%;
+            }
+            
+            .circular-map {
+                height: 350px;
+            }
+            
+            .biome-info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-top: 40px;
+                padding: 0 15px;
+            }
+            
+            .info-panel {
+                padding: 20px;
+            }
+            
+            .panel-header {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .biome-title {
+                font-size: 1.2rem;
+            }
+            
+            .status-badge {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+            
+            .endspeal-panel {
+                margin: 30px 15px;
+                padding: 20px;
+            }
+            
+            .endspeal-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .endspeal-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+            
+            .endspeal-title {
+                font-size: 1.5rem;
+            }
+            
+            .endspeal-structure {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .endspeal-function {
+                padding: 15px;
+            }
+            
+            .detailed-info-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+                padding: 0 15px !important;
+            }
+            
+            .info-card {
+                padding: 20px !important;
+                grid-column: span 1 !important;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .card-icon {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 1.5rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .ark-page .hero-title .line-1 {
+                font-size: 1.8rem;
+            }
+            
+            .ark-page .hero-title .line-2 {
+                font-size: 1rem;
+            }
+            
+            .ark-page .hero-title .line-3 {
+                font-size: 2.5rem;
+            }
+            
+            .circular-map {
+                height: 300px;
+            }
+            
+            .biome-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .biome-title {
+                font-size: 1.1rem;
+            }
+            
+            .sub-biome-list {
+                gap: 5px;
+            }
+            
+            .sub-biome-tag {
+                padding: 3px 8px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body class="ark-page">
+    <!-- Matrix background -->
+    <div class="matrix-background"></div>
+    <div class="constellation" id="constellation"></div>
+    
+    <!-- Side stripes -->
+    <div class="accent-strip left-strip"></div>
+    <div class="accent-strip right-strip"></div>
+    
+    <!-- Background effect -->
+    <div class="bg-effect"></div>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="header-logo-container">
+                    <a href="index.html">
+                        <img src="assets/game-logo.png" alt="Game Logo" class="game-logo-small">
+                    </a>
+                    <div class="logo">
+                        <div class="logo-text">
+                            <span class="title glowing-title">CELESTIAL ASCENDED</span>
+                            <span class="subtitle">ARK PROJECT ARCHIVE</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="chronology.html" class="nav-link">Chronology</a>
+                    <a href="ark.html" class="nav-link active">Ark Project</a>
+                    <a href="ascension.html" class="nav-link">Ascension</a>
+                    <a href="archive.html" class="nav-link">Archive</a>
+                    <div class="action-buttons">
+                        <a href="https://www.roblox.com/games/140504465788557/0-0-1" target="_blank" class="action-btn roblox">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Play Now</span>
+                        </a>
+                        <a href="https://discord.gg/gSg4av7GuH" target="_blank" class="action-btn discord">
+                            <i class="fab fa-discord"></i>
+                            <span>Discord</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-logo-section">
+                <div class="logo-aura"></div>
+                <img src="assets/ced-logo.png" alt="Celestial Engineering Directorate" class="ced-logo-large pulsing">
+                <div class="logo-badge">PLANETARY ENVIRONMENT SIMULATION</div>
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="line-1 animated-title" style="opacity: 1; transform: translateY(0);">THE ARK PROJECT</span>
+                <span class="line-2" style="opacity: 1; transform: translateY(0);">SIMULATED PLANETARY ENVIRONMENTS</span>
+                <span class="line-3" style="opacity: 1; transform: translateY(0);">ARK</span>
+            </h1>
+            
+            <p class="hero-description">
+                A sealed ecosystem under the Dome of "Hard Light". Each biome represents a real planet from the Genesis Network, 
+                faithfully recreated with its unique environments and ecosystems. 9 distinct planetary simulations, each divided into 
+                ecological zones, serving as the primary testing ground for the Ascension Program.
+            </p>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="container" style="padding: 40px 0 100px;">
+        <div class="section-header" style="margin-bottom: 40px;">
+            <h2 class="section-title glowing-title"><i class="fas fa-map-marked-alt"></i> ARK BIOME MAP</h2>
+            <p class="section-subtitle">Each zone represents a simulated planetary environment from the Genesis Network</p>
+        </div>
+        
+        <!-- Circular Map Container -->
+        <div class="circular-map-container">
+            <div class="circular-map">
+                <img src="assets/ark-map.jpg" alt="Ark Biome Map" id="ark-map-image">
+            </div>
+        </div>
+        
+        <!-- Biome Information Grid -->
+        <div class="biome-info-grid">
+            <!-- Aellis -->
+            <div class="info-panel biome-aellis" data-biome="aellis">
+                <div class="panel-header">
+                    <div class="biome-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="biome-title">Aellis</h3>
+                    <span class="status-badge">RED ZONE</span>
+                </div>
+                <p class="biome-description" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">
+                    <strong>Source Planet:</strong> G-774 "Paradox"<br>
+                    Earth-like world with dense oxygen atmosphere. Inverted ecological pyramid where flora acts as predator.
+                </p>
+                <div class="sub-biomes">
+                    <h4>Ecological Zones:</h4>
+                    <div class="sub-biome-list">
+                        <span class="sub-biome-tag">Canopy Forests</span>
+                        <span class="sub-biome-tag">Acidic Marshes</span>
+                        <span class="sub-biome-tag">Bioluminescent Caves</span>
+                        <span class="sub-biome-tag">Predatory Flora Fields</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Zenithar -->
+            <div class="info-panel biome-zenithar" data-biome="zenithar">
+                <div class="panel-header">
+                    <div class="biome-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3 class="biome-title">Zenithar</h3>
+                    <span class="status-badge">RED ZONE</span>
+                </div>
+                <p class="biome-description" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">
+                    <strong>Source Planet:</strong> G-223 "Mycelium"<br>
+                    Thin atmosphere saturated with spores. Endless fungal networks with silicon-based life forms in symbiosis.
+                </p>
+                <div class="sub-biomes">
+                    <h4>Ecological Zones:</h4>
+                    <div class="sub-biome-list">
+                        <span class="sub-biome-tag">Spore Forests</span>
+                        <span class="sub-biome-tag">Silicate Fields</span>
+                        <span class="sub-biome-tag">Fungal Caverns</span>
+                        <span class="sub-biome-tag">Spore Clouds</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Helis-Veil -->
+            <div class="info-panel biome-helis" data-biome="helis">
+                <div class="panel-header">
+                    <div class="biome-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3 class="biome-title">Helis-Veil</h3>
+                    <span class="status-badge">YELLOW ZONE</span>
+                </div>
+                <p class="biome-description" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">
+                    <strong>Source Planet:</strong> G-556 "Tempest"<br>
+                    Glass sand desert with two simulated suns. Eternal hurricane winds force all life to exist in perpetual flight.
+                </p>
+                <div class="sub-biomes">
+                    <h4>Ecological Zones:</h4>
+                    <div class="sub-biome-list">
+                        <span class="sub-biome-tag">Glass Dunes</span>
+                        <span class="sub-biome-tag">Storm Corridors</span>
+                        <span class="sub-biome-tag">Crystal Formations</span>
+                        <span class="sub-biome-tag">Aerial Ecosystems</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Yotun -->
+            <div class="info-panel biome-yotun" data-biome="yotun">
+                <div class="panel-header">
+                    <div class="biome-icon">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <h3 class="biome-title">Yotun</h3>
+                    <span class="status-badge">YELLOW ZONE</span>
+                </div>
+                <p class="biome-description" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">
+                    <strong>Source Planet:</strong> G-891 "Frostgiant" (Moon)<br>
+                    Ice-covered moon with high gravity and sub-surface ocean. Luminescent life thrives in dark, warm waters under kilometers of ice.
+                </p>
+                <div class="sub-biomes">
+                    <h4>Ecological Zones:</h4>
+                    <div class="sub-biome-list">
+                        <span class="sub-biome-tag">Ice Sheets</span>
+                        <span class="sub-biome-tag">Subglacial Ocean</span>
+                        <span class="sub-biome-tag">Cryovolcanoes</span>
+                        <span class="sub-biome-tag">Luminescent Depths</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Kailo -->
+            <div class="info-panel biome-kailo" data-biome="kailo">
+                <div class="panel-header">
+                    <div class="biome-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3 class="biome-title">Kailo</h3>
+                    <span class="status-badge">YELLOW ZONE</span>
+                </div>
+                <p class="biome-description" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">
+                    <strong>Source Planet:</strong> G-342 "Terminus"<br>
+                    Tidally locked world with eternal twilight zone. Silicon "living skyscrapers" provide shelter for fragile ecosystems within their structures.
+                </p>
+                <div class="sub-biomes">
+                    <h4>Ecological Zones:</h4>
+                    <div class="sub-biome-list">
+                        <span class="sub-biome-tag">Twilight Belt</span>
+                        <span class="sub-biome-tag">Silicon Forests</span>
+                        <span class="sub-biome-tag">Internal Ecosystems</span>
+                        <span class="sub-biome-tag">Terminator Line</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Umbra -->
+            <div class="info-panel biome-umbra" data-biome="umbra">
+                <div class="panel-header">
+                    <div class="biome-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3 class="biome-title">Umbra</h3>
+                    <span class="status-badge">BLUE ZONE</span>
+                </div>
+                <p class="biome-description" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">
+                    <strong>Source Planet:</strong> G-115 "Abyss"<br>
+                    Ocean world of eternal fog with floating bacterial islands. Home to only one life form: a single-celled but incredibly advanced super-organism.
+                </p>
+                <div class="sub-biomes">
+                    <h4>Ecological Zones:</h4>
+                    <div class="sub-biome-list">
+                        <span class="sub-biome-tag">Fog Oceans</span>
+                        <span class="sub-biome-tag">Bacterial Islands</span>
+                        <span class="sub-biome-tag">Deep Abyss</span>
+                        <span class="sub-biome-tag">Organism Nexus</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Astral Infection -->
+            <div class="info-panel biome-astral" data-biome="astral">
+                <div class="panel-header">
+                    <div class="biome-icon">
+                        <i class="fas fa-radiation"></i>
+                    </div>
+                    <h3 class="biome-title">Astral Infection</h3>
+                    <span class="status-badge">BLACK ZONE</span>
+                </div>
+                <p class="biome-description" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">
+                    <strong>Source:</strong> Unknown / Anomalous<br>
+                    Self-replicating non-baryonic matter of unknown origin. Slowly absorbs and crystallizes any substance into diamond-like structures.
+                </p>
+                <div class="sub-biomes">
+                    <h4>Containment Zones:</h4>
+                    <div class="sub-biome-list">
+                        <span class="sub-biome-tag">Crystal Growth Fields</span>
+                        <span class="sub-biome-tag">Containment Perimeter</span>
+                        <span class="sub-biome-tag">Stabilization Grid</span>
+                        <span class="sub-biome-tag">Research Outpost</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rift -->
+            <div class="info-panel biome-rift" data-biome="rift">
+                <div class="panel-header">
+                    <div class="biome-icon">
+                        <i class="fas fa-skull-crossbones"></i>
+                    </div>
+                    <h3 class="biome-title">The Rift</h3>
+                    <span class="status-badge">BLACK ZONE</span>
+                </div>
+                <p class="biome-description" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">
+                    <strong>Source:</strong> Obelisk #8 Collapse<br>
+                    Zone of pure entropy where Obelisk #8 has failed. Space, time, and physical laws are unstable and chaotic.
+                </p>
+                <div class="sub-biomes">
+                    <h4>Anomalous Zones:</h4>
+                    <div class="sub-biome-list">
+                        <span class="sub-biome-tag">Gravity Storms</span>
+                        <span class="sub-biome-tag">Temporal Fluctuations</span>
+                        <span class="sub-biome-tag">Spatial Fractures</span>
+                        <span class="sub-biome-tag">Obelisk Ruins</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Terra - UPDATED -->
+            <div class="info-panel biome-terra" data-biome="terra">
+                <div class="panel-header">
+                    <div class="biome-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3 class="biome-title">Terra</h3>
+                    <span class="status-badge">YELLOW ZONE</span>
+                </div>
+                <p class="biome-description" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">
+                    <strong>Source Planet:</strong> Earth (Mixed Eras)<br>
+                    A wild, untamed biome combining Earth's geological history from Cambrian to Anthropocene. Mammals, Cambrian creatures, dinosaurs, and modern animals coexist in this chaotic ecosystem.
+                </p>
+                <div class="sub-biomes">
+                    <h4>Ecological Zones:</h4>
+                    <div class="sub-biome-list">
+                        <span class="sub-biome-tag">Thermal Spires</span>
+                        <span class="sub-biome-tag">Boreal Forests</span>
+                        <span class="sub-biome-tag">Giant Sequoia Forests</span>
+                        <span class="sub-biome-tag">Swamplands</span>
+                        <span class="sub-biome-tag">Mountain Ranges</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- EndSpeal Panel -->
+        <div class="endspeal-panel">
+            <div class="endspeal-header">
+                <div class="endspeal-icon">
+                    <i class="fas fa-tower-broadcast"></i>
+                </div>
+                <div>
+                    <h2 class="endspeal-title">ENDSPEAL TOWER</h2>
+                    <p style="color: var(--text-secondary); margin-top: 5px;">Humanity's Central Hub in the Ark</p>
+                </div>
+            </div>
+            
+            <div style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 25px; position: relative; z-index: 1;">
+                <p>The EndSpeal Tower is the primary human structure within the Ark, located in the Thermal Spires zone of the Terra biome. This monumental tower serves as humanity's command center, research hub, and gateway to the entire Ark.</p>
+            </div>
+            
+            <div class="endspeal-structure">
+                <div class="endspeal-function">
+                    <h4><i class="fas fa-bolt"></i> Power Core</h4>
+                    <ul>
+                        <li><strong>Fusion Reactor:</strong> Projects an artificial mini-star that powers all human infrastructure in the Ark</li>
+                        <li><strong>Energy Distribution:</strong> Supplies power to research facilities, life support, and defense systems</li>
+                        <li><strong>Obelisk Link:</strong> Provides energy to all Obelisks throughout the Ark</li>
+                    </ul>
+                </div>
+                
+                <div class="endspeal-function">
+                    <h4><i class="fas fa-users"></i> KOL Operations</h4>
+                    <ul>
+                        <li><strong>Primary Deployment Point:</strong> All KOLs (Cloned Optimized Personalities) deploy from here</li>
+                        <li><strong>Consciousness Transfer:</strong> Digital consciousness upload/download facility</li>
+                        <li><strong>Respawn Hub:</strong> KOL regeneration and re-deployment center</li>
+                    </ul>
+                </div>
+                
+                <div class="endspeal-function">
+                    <h4><i class="fas fa-satellite-dish"></i> Teleportation Network</h4>
+                    <ul>
+                        <li><strong>Obelisk Gateways:</strong> Direct teleportation links to all Obelisks</li>
+                        <li><strong>Biome Access:</strong> Instant transportation to any biome in the Ark</li>
+                        <li><strong>Atrium Connection:</strong> Sole link to the underground Atrium complex</li>
+                    </ul>
+                </div>
+                
+                <div class="endspeal-function">
+                    <h4><i class="fas fa-shield-alt"></i> Strategic Functions</h4>
+                    <ul>
+                        <li><strong>Command Center:</strong> CED's primary command and control facility</li>
+                        <li><strong>Research Nexus:</strong> Central data collection from all biomes</li>
+                        <li><strong>Defense Hub:</strong> Coordinates Ark security and anomaly containment</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255, 215, 0, 0.2); position: relative; z-index: 1;">
+                <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+                    <strong>Note:</strong> The Atrium, humanity's primary living and research complex, is located deep underground beneath the EndSpeal Tower. 
+                    Access is strictly controlled - only through the Tower's secure elevator systems. The Atrium contains living quarters, 
+                    medical facilities, research laboratories, and the Ascension Program's primary transformation chambers.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Information Sections -->
+    <section class="container" style="padding: 80px 0; background: rgba(10, 10, 20, 0.5); border-radius: 20px; margin-bottom: 80px;">
+        <div class="section-header" style="margin-bottom: 50px;">
+            <h2 class="section-title glowing-title"><i class="fas fa-cogs"></i> ARK STRUCTURE AND SYSTEMS</h2>
+            <p class="section-subtitle">The technology behind planetary simulations and the Genesis Network integration</p>
+        </div>
+        
+        <div class="detailed-info-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); gap: 30px;">
+            <!-- Obelisks and Planetary Simulation -->
+            <div class="info-card" style="background: linear-gradient(145deg, rgba(17, 17, 34, 0.9), rgba(34, 34, 68, 0.9)); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 15px; padding: 30px; transition: all 0.3s;">
+                <div class="card-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div class="card-icon" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--gold);">
+                        <i class="fas fa-satellite"></i>
+                    </div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--text);">Obelisks: Planetary Reality Engines</h3>
+                </div>
+                <p style="color: var(--text-secondary); margin-bottom: 15px; line-height: 1.6;">
+                    Each biome is a faithful simulation of a real planet from the Genesis Network. Obelisks don't create alternate realities — 
+                    they <strong>recreate</strong> existing planetary environments with perfect accuracy:
+                </p>
+                <ul style="color: var(--text-secondary); padding-left: 20px; margin-bottom: 20px;">
+                    <li style="margin-bottom: 8px;"><strong>Atmospheric Simulation:</strong> Exact composition, pressure, and climate patterns</li>
+                    <li style="margin-bottom: 8px;"><strong>Gravitational Mapping:</strong> Planetary gravity field replication</li>
+                    <li style="margin-bottom: 8px;"><strong>Ecological Reconstruction:</strong> Native flora and fauna ecosystems</li>
+                    <li style="margin-bottom: 8px;"><strong>Planetary Cycles:</strong> Day/night, seasonal, and tidal patterns</li>
+                    <li><strong>Environmental Parameters:</strong> Radiation levels, magnetic fields, geological activity</li>
+                </ul>
+                <p style="color: var(--text-secondary); font-style: italic; line-height: 1.6;">
+                    "The EndSpeal Tower serves as the central nexus connecting all Obelisks, allowing for instantaneous teleportation between biomes and centralized control of the entire Ark environment."
+                </p>
+            </div>
+            
+            <!-- GCA: Galactic Common Ancestor -->
+            <div class="info-card" style="background: linear-gradient(145deg, rgba(17, 17, 34, 0.9), rgba(34, 34, 68, 0.9)); border: 1px solid rgba(0, 204, 255, 0.2); border-radius: 15px; padding: 30px; transition: all 0.3s;">
+                <div class="card-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div class="card-icon" style="width: 60px; height: 60px; background: rgba(0, 204, 255, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--cyan);">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--text);">GCA: Galactic Common Ancestor</h3>
+                </div>
+                <p style="color: var(--text-secondary); margin-bottom: 15px; line-height: 1.6;">
+                    <strong>Galactic Common Ancestor (GCA)</strong> is the fundamental biological template distributed by the Progenitors through the Genesis Network. 
+                    It represents the shared origin of all life found on hundreds of planets.
+                </p>
+                <p style="color: var(--text-secondary); margin-bottom: 15px; line-height: 1.6;">
+                    <strong>Key Principles:</strong>
+                </p>
+                <ul style="color: var(--text-secondary); padding-left: 20px; margin-bottom: 20px;">
+                    <li style="margin-bottom: 8px;"><strong>Universal Compatibility:</strong> GCA-based life can adapt to any planetary conditions</li>
+                    <li style="margin-bottom: 8px;"><strong>Evolutionary Diversity:</strong> Same origin, infinite evolutionary paths</li>
+                    <li style="margin-bottom: 8px;"><strong>Suppression Mechanism:</strong> GCA includes biological failsafe against intelligence development</li>
+                    <li><strong>Integration Potential:</strong> Human-GCA symbiosis is the basis of the Ascension Program</li>
+                </ul>
+                <p style="color: var(--text-secondary); line-height: 1.6;">
+                    In the Ark, we study how alien GCA-based DNA (Subjects) can be integrated into human biology, bypassing the 
+                    intelligence suppression to create enhanced humans capable of surviving in any environment.
+                </p>
+            </div>
+            
+            <!-- Terra Biome Details -->
+            <div class="info-card" style="background: linear-gradient(145deg, rgba(17, 17, 34, 0.9), rgba(34, 34, 68, 0.9)); border: 1px solid rgba(204, 204, 204, 0.3); border-radius: 15px; padding: 30px; transition: all 0.3s;">
+                <div class="card-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div class="card-icon" style="width: 60px; height: 60px; background: rgba(204, 204, 204, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: #cccccc;">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #cccccc;">Terra Biome: Temporal Amalgamation</h3>
+                </div>
+                <p style="color: var(--text-secondary); margin-bottom: 15px; line-height: 1.6;">
+                    Unlike other biomes that simulate single planets, Terra is a <strong>temporal amalgamation</strong> of Earth's complete geological history:
+                </p>
+                <ul style="color: var(--text-secondary); padding-left: 20px; margin-bottom: 20px;">
+                    <li style="margin-bottom: 8px;"><strong>Cambrian Era:</strong> Ancient sea creatures, trilobites, early arthropods</li>
+                    <li style="margin-bottom: 8px;"><strong>Mesozoic Era:</strong> Dinosaurs, pterosaurs, early mammals</li>
+                    <li style="margin-bottom: 8px;"><strong>Cenozoic Era:</strong> Mammals, birds, primates</li>
+                    <li><strong>Anthropocene:</strong> Modern animals and human-introduced species</li>
+                </ul>
+                <p style="color: var(--text-secondary); line-height: 1.6;">
+                    This chaotic mixture serves as the ultimate survival test for Ascension candidates, exposing them to predators and environmental challenges from Earth's entire evolutionary history.
+                </p>
+            </div>
+            
+            <!-- Ark Geography and Research Zones -->
+            <div class="info-card" style="background: linear-gradient(145deg, rgba(17, 17, 34, 0.9), rgba(34, 34, 68, 0.9)); border: 1px solid rgba(255, 51, 102, 0.2); border-radius: 15px; padding: 30px; transition: all 0.3s; grid-column: span 2;">
+                <div class="card-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div class="card-icon" style="width: 60px; height: 60px; background: rgba(255, 51, 102, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--red);">
+                        <i class="fas fa-archway"></i>
+                    </div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--text);">Ark Structure and Research Infrastructure</h3>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <div>
+                        <h4 style="font-family: 'Orbitron', sans-serif; color: var(--gold); margin-bottom: 15px; font-size: 1.2rem;">Physical Layout</h4>
+                        <p style="color: var(--text-secondary); margin-bottom: 15px; line-height: 1.6;">
+                            The Ark Dome contains an artificial ocean basin with two main land masses:
+                        </p>
+                        <ul style="color: var(--text-secondary); padding-left: 20px; margin-bottom: 20px;">
+                            <li style="margin-bottom: 10px;"><strong>Central Continent:</strong> 8 planetary simulations (biomes) arranged in radial pattern</li>
+                            <li style="margin-bottom: 10px;"><strong>Rift Island:</strong> Isolated anomaly zone (Obelisk #8 failure)</li>
+                            <li><strong>Oceanic Zones:</strong> Umbra biome and Astral Infection containment</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="font-family: 'Orbitron', sans-serif; color: var(--cyan); margin-bottom: 15px; font-size: 1.2rem;">Human Infrastructure</h4>
+                        <p style="color: var(--text-secondary); margin-bottom: 15px; line-height: 1.6;">
+                            Key facilities supporting the Ascension Program:
+                        </p>
+                        <ul style="color: var(--text-secondary); padding-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>EndSpeal Tower:</strong> Central hub, power source, teleportation nexus</li>
+                            <li style="margin-bottom: 8px;"><strong>Atrium Complex:</strong> Underground living quarters and primary research facilities</li>
+                            <li style="margin-bottom: 8px;"><strong>Nexus Laboratories:</strong> DNA analysis, cybernetics, transformation research</li>
+                            <li style="margin-bottom: 8px;"><strong>Ascension Chambers:</strong> Located in Atrium, main transformation facilities</li>
+                            <li><strong>Observation Decks:</strong> Real-time monitoring of each biome from EndSpeal Tower</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+                        <strong>Security Protocol:</strong> The Terra biome, while being the most "Earth-like," is classified as Yellow Zone due to the presence of predators from multiple geological eras and the inherent dangers of temporal ecological mixing. All personnel must be escorted between EndSpeal Tower and Atrium facilities.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="assets/game-logo.png" alt="Game Logo" class="game-logo-footer">
+                        <div class="logo-text">
+                            <span class="title glowing-title">CELESTIAL ASCENDED</span>
+                            <span class="subtitle">ARK PROJECT DATABASE</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Official archive of the Ark Project. All materials are classified and available only to authorized CED personnel.
+                    </p>
+                    
+                    <div class="footer-social">
+                        <a href="https://www.youtube.com/@NebularkStd" target="_blank" class="social-link youtube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://discord.gg/gSg4av7GuH" target="_blank" class="social-link discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://www.roblox.com/games/140504465788557/0-0-1" target="_blank" class="social-link roblox">
+                            <i class="fas fa-gamepad"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>ARK PROJECT</h4>
+                        <a href="#map">Biome Map</a>
+                        <a href="#obelisks">Obelisks</a>
+                        <a href="#gca">GCA System</a>
+                        <a href="#endspeal">EndSpeal Tower</a>
+                        <a href="#terra">Terra Biome</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>BIOMES</h4>
+                        <a href="#aellis">Aellis</a>
+                        <a href="#zenithar">Zenithar</a>
+                        <a href="#helis">Helis-Veil</a>
+                        <a href="#yotun">Yotun</a>
+                        <a href="#kailo">Kailo</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>SPECIAL ZONES</h4>
+                        <a href="#umbra">Umbra</a>
+                        <a href="#astral">Astral Infection</a>
+                        <a href="#rift">Rift</a>
+                        <a href="#terra">Terra</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>RESEARCH</h4>
+                        <a href="ascension.html">Ascension Program</a>
+                        <a href="progenitors.html">Progenitors</a>
+                        <a href="structure.html">CED Structure</a>
+                        <a href="media.html">Media Archive</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <div class="legal-text">
+                        © 2347 CELESTIAL ENGINEERING DIRECTORATE. Access restricted.<br>
+                        Ark Project data is classified. Unauthorized distribution is prohibited.
+                    </div>
+                    <div class="legal-links">
+                        <a href="#">Classification Level</a>
+                        <a href="#">Access Protocol</a>
+                        <a href="#">CED Regulations</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Particles -->
+    <div class="particles-container" id="particles"></div>
+    
+    <script src="script.js"></script>
+    
+    <script>
+        // Интерактивность для страницы Ark
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация карты при наведении
+            const arkMap = document.getElementById('ark-map-image');
+            if (arkMap) {
+                arkMap.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.transition = 'transform 5s ease';
+                });
+                
+                arkMap.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            }
+            
+            // Интерактивность для панелей биомов
+            const biomePanels = document.querySelectorAll('.info-panel');
+            
+            biomePanels.forEach(panel => {
+                panel.addEventListener('mouseenter', function() {
+                    const biome = this.getAttribute('data-biome');
+                    console.log('Hovering over:', biome);
+                });
+                
+                // Анимация клика
+                panel.addEventListener('click', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-10px) scale(1.02)';
+                    }, 150);
+                });
+            });
+            
+            // Анимация для панели EndSpeal
+            const endspealPanel = document.querySelector('.endspeal-panel');
+            if (endspealPanel) {
+                endspealPanel.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 0 80px rgba(255, 215, 0, 0.3)';
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                endspealPanel.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = '0 0 60px rgba(255, 215, 0, 0.2)';
+                    this.style.transform = 'translateY(0)';
+                });
+            }
+            
+            // Инициализация для страницы
+            if (typeof initConstellation === 'function') initConstellation();
+            if (typeof initParticles === 'function') initParticles();
+            if (typeof initMobileMenu === 'function') initMobileMenu();
+        });
+        
+        // Эффект параллакса для карты
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const mapContainer = document.querySelector('.circular-map-container');
+            
+            if (mapContainer) {
+                const yPos = -(scrolled * 0.1);
+                mapContainer.style.transform = `translateY(${yPos}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Ascension | Celestial Ascended</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Дополнительные стили для страницы Вознесения */
+        .ascension-hero {
+            padding: 100px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ascension-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        .program-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--cyan));
+            color: var(--dark);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px var(--gold-glow);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+        }
+        
+        .ascension-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold), var(--cyan), var(--red));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .gca-section {
+            padding: 80px 0;
+            background: rgba(10, 10, 20, 0.6);
+        }
+        
+        /* Стили для кнопок и иконок только на этой странице */
+        .ascension-content-icon {
+            color: var(--gold);
+            text-shadow: 0 0 10px var(--gold-glow);
+            transition: all 0.3s;
+        }
+        
+        .ascension-icon {
+            color: var(--gold);
+            text-shadow: 0 0 10px var(--gold-glow);
+        }
+        
+        .section-title .ascension-content-icon {
+            margin-right: 10px;
+        }
+        
+        .path-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin: 50px 0;
+        }
+        
+        .path-step {
+            background: linear-gradient(145deg, rgba(17, 17, 34, 0.9), rgba(34, 34, 68, 0.9));
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .path-step:hover {
+            transform: translateX(10px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold), #ffcc00);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            flex-shrink: 0;
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        
+        .subject-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+        
+        .subject-card {
+            background: linear-gradient(145deg, rgba(17, 17, 34, 0.9), rgba(34, 34, 68, 0.9));
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+        }
+        
+        .subject-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: var(--gold);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .kol-section {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(0, 204, 255, 0.05));
+            border-radius: 20px;
+            padding: 50px;
+            margin: 60px 0;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+        }
+        
+        .kol-process {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 180px;
+        }
+        
+        .process-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 25px var(--gold-glow);
+        }
+        
+        .process-arrow {
+            font-size: 2rem;
+            color: var(--gold);
+            text-shadow: 0 0 15px var(--gold-glow);
+        }
+        
+        .compatibility-chart {
+            width: 100%;
+            overflow-x: auto;
+            margin: 40px 0;
+        }
+        
+        .chart-container {
+            min-width: 800px;
+        }
+        
+        .chart-row {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .chart-label {
+            width: 200px;
+            font-weight: 600;
+            color: var(--text);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+        }
+        
+        .chart-bar {
+            flex: 1;
+            height: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), #ffcc00);
+            border-radius: 10px;
+            box-shadow: 0 0 10px var(--gold-glow);
+        }
+        
+        .chart-value {
+            width: 80px;
+            text-align: right;
+            color: var(--gold);
+            font-weight: 600;
+            text-shadow: 0 0 10px var(--gold-glow);
+        }
+        
+        .quote-block {
+            background: rgba(255, 215, 0, 0.05);
+            border-left: 4px solid var(--gold);
+            padding: 30px;
+            margin: 40px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
+        }
+        
+        .quote-author {
+            text-align: right;
+            color: var(--gold);
+            margin-top: 15px;
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        }
+        
+        /* Стили для кнопок с золотым свечением */
+        .ascension-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+        }
+        
+        .ascension-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--gold-glow);
+            border-color: var(--gold);
+        }
+        
+        .ascension-btn i {
+            color: var(--gold);
+            text-shadow: 0 0 10px var(--gold-glow);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .ascension-title {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .ascension-hero {
+                padding: 80px 0 40px;
+            }
+            
+            .ascension-title {
+                font-size: 2.5rem;
+            }
+            
+            .path-step {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .kol-process {
+                gap: 30px;
+            }
+            
+            .process-step {
+                width: 150px;
+            }
+            
+            .kol-section {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .ascension-title {
+                font-size: 2rem;
+            }
+            
+            .program-badge {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+            
+            .subject-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .kol-process {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .process-arrow {
+                transform: rotate(90deg);
+            }
+            
+            .chart-container {
+                min-width: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix background -->
+    <div class="matrix-background"></div>
+    <div class="constellation" id="constellation"></div>
+    
+    <!-- Side stripes -->
+    <div class="accent-strip left-strip"></div>
+    <div class="accent-strip right-strip"></div>
+    
+    <!-- Background effect -->
+    <div class="bg-effect"></div>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="header-logo-container">
+                    <a href="index.html">
+                        <img src="assets/game-logo.png" alt="Game Logo" class="game-logo-small">
+                    </a>
+                    <div class="logo">
+                        <div class="logo-text">
+                            <span class="title glowing-title">CELESTIAL ASCENDED</span>
+                            <span class="subtitle">ASCENSION PROGRAM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="chronology.html" class="nav-link">Chronology</a>
+                    <a href="ark.html" class="nav-link">Ark Project</a>
+                    <a href="ascension.html" class="nav-link active">Ascension</a>
+                    <a href="archive.html" class="nav-link">Archive</a>
+                    <div class="action-buttons">
+                        <a href="https://www.roblox.com/games/140504465788557/0-0-1" target="_blank" class="action-btn roblox">
+                            <i class="fas fa-gamepad"></i> <!-- Без золотого свечения -->
+                            <span>Play Now</span>
+                        </a>
+                        <a href="https://discord.gg/gSg4av7GuH" target="_blank" class="action-btn discord">
+                            <i class="fab fa-discord"></i> <!-- Без золотого свечения -->
+                            <span>Discord</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i> <!-- Без золотого свечения -->
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="ascension-hero">
+        <div class="container">
+            <div class="hero-logo-section">
+                <div class="logo-aura"></div>
+                <img src="assets/ced-logo.png" alt="Celestial Engineering Directorate" class="ced-logo-large pulsing">
+                <div class="logo-badge">ASCENSION PROGRAM</div>
+            </div>
+            
+            <div class="program-badge">PRIORITY PROJECT ALPHA</div>
+            
+            <h1 class="ascension-title">EVOLUTION THROUGH ASCENSION</h1>
+            
+            <p class="hero-description">
+                Humanity's last chance for survival. The Ascension Program is CED's comprehensive initiative to 
+                fundamentally transform human biology and consciousness through integration with alien DNA, 
+                advanced cybernetics, and cosmic emanations. This is not just evolution — this is transcendence.
+            </p>
+            
+            <div style="margin-top: 40px;">
+                <a href="#gca" class="ascension-btn">
+                    <i class="fas fa-dna ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                    Explore GCA
+                </a>
+                <a href="#paths" class="ascension-btn" style="margin-left: 15px;">
+                    <i class="fas fa-route ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                    View Ascension Paths
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="section-nav">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glowing-title"><i class="fas fa-dna ascension-content-icon"></i> THE ASCENSION IMPERATIVE</h2> <!-- Только эти иконки золотые -->
+                <p class="section-subtitle">
+                    Why humanity must evolve to survive in the post-Guardian era
+                </p>
+            </div>
+            
+            <div class="era-detail">
+                <p class="era-overview">
+                    After the Three-Day War (2224), humanity faced a brutal truth: our biological form, 
+                    while successful on Earth, is fundamentally incompatible with the broader cosmic reality. 
+                    The Guardians are not soldiers — they are algorithms designed to eliminate emergent intelligence. 
+                    To bypass their programming, humanity must cease being "intelligent life" as defined by 
+                    the Genesis Guides and become something entirely new.
+                </p>
+                
+                <div class="quote-block">
+                    "We are not creating superhumans. We are creating post-humans — beings who can think in 
+                    non-linear time, survive in environments that deny biology, and perceive reality across 
+                    multiple dimensions. The Ascension Program is humanity's metamorphosis."
+                    <div class="quote-author">— Dr. Aris Kael, Project Lead</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GCA Section -->
+    <section class="gca-section" id="gca">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glowing-title"><i class="fas fa-atom ascension-content-icon"></i> GALACTIC COMMON ANCESTOR (GCA)</h2> <!-- Только эти иконки золотые -->
+                <p class="section-subtitle">
+                    The biological foundation of all life in the galaxy and the key to Ascension
+                </p>
+            </div>
+            
+            <div class="era-detail">
+                <div class="era-detail-header">
+                    <div class="era-detail-icon">
+                        <i class="fas fa-seedling ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                    </div>
+                    <div class="era-detail-title">
+                        <h2>GCA: The Universal Blueprint</h2>
+                        <div class="era-detail-period" style="color: var(--gold); text-shadow: 0 0 10px var(--gold-glow);">Origin: 4 billion years ago</div>
+                    </div>
+                </div>
+                
+                <div class="era-overview">
+                    <h3><i class="fas fa-dna ascension-content-icon" style="margin-right: 10px;"></i> What is GCA?</h3> <!-- Только эти иконки золотые -->
+                    <p>
+                        The Galactic Common Ancestor (ГОП in Russian, GCA in English) is not a species, 
+                        but a <strong>universal biological framework</strong> seeded by the Genesis Guides 
+                        across thousands of worlds through the Gates of Genesis. It represents the foundational 
+                        genetic architecture from which all complex life in the Milky Way has evolved.
+                    </p>
+                    
+                    <h3><i class="fas fa-list ascension-content-icon" style="margin-right: 10px;"></i> Key Characteristics:</h3> <!-- Только эти иконки золотые -->
+                    <div class="path-features">
+                        <li><i class="fas fa-check ascension-content-icon" style="margin-right: 8px;"></i><strong>Universal Compatibility:</strong> GCA-based DNA shares 78% structural similarity across all known biospheres</li>
+                        <li><i class="fas fa-check ascension-content-icon" style="margin-right: 8px;"></i><strong>Adaptive Template:</strong> Contains epigenetic markers that allow rapid adaptation to local conditions</li>
+                        <li><i class="fas fa-check ascension-content-icon" style="margin-right: 8px;"></i><strong>Quantum Biological Elements:</strong> Integrates with local quantum fields, enabling forms of "biological entanglement"</li>
+                        <li><i class="fas fa-check ascension-content-icon" style="margin-right: 8px;"></i><strong>Recursive Complexity:</strong> Can evolve intelligence, but only within predefined parameters that trigger Guardian intervention</li>
+                    </div>
+                </div>
+                
+                <div class="era-overview">
+                    <h3><i class="fas fa-cogs ascension-content-icon" style="margin-right: 10px;"></i> GCA in the Ascension Program</h3> <!-- Только эти иконки золотые -->
+                    <p>
+                        CED researchers have discovered that GCA contains "dormant protocols" — genetic sequences 
+                        that remain inactive until triggered by specific environmental or cognitive stimuli. 
+                        The Ascension Program aims to:
+                    </p>
+                    
+                    <div class="path-visual">
+                        <div class="path-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Decode Dormant Protocols</h3>
+                                <p>Identify and activate GCA sequences that enable enhanced cognition, regeneration, and environmental adaptation without triggering Guardian detection algorithms.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="path-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Human-GCA Integration</h3>
+                                <p>Develop safe methods for integrating GCA sequences into human DNA, creating hybrid genetic structures that maintain human consciousness while gaining GCA capabilities.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="path-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Protocol Optimization</h3>
+                                <p>Refine integrated protocols through iterative testing in Ark biomes, ensuring stability, safety, and effectiveness across all Ascension paths.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ascension Paths -->
+    <section class="paths-section" id="paths">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glowing-title"><i class="fas fa-route ascension-content-icon"></i> ASCENSION PATHS</h2> <!-- Только эти иконки золотые -->
+                <p class="section-subtitle">
+                    Three complementary approaches to human transcendence
+                </p>
+            </div>
+            
+            <div class="paths-container">
+                <div class="path-card">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-dna ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                        </div>
+                        <h3>Biological Ascension</h3>
+                    </div>
+                    <div class="path-content">
+                        <p><strong><i class="fas fa-brain ascension-content-icon" style="margin-right: 5px;"></i> Philosophy:</strong> Humanity evolves by embracing and integrating alien biology, becoming a symbiotic organism capable of surviving any environment.</p>
+                        <ul class="path-features">
+                            <li><i class="fas fa-code-branch ascension-content-icon" style="margin-right: 5px;"></i><strong>GCA Integration:</strong> Selective incorporation of alien DNA sequences</li>
+                            <li><i class="fas fa-heartbeat ascension-content-icon" style="margin-right: 5px;"></i><strong>Regenerative Systems:</strong> Wolverine-like healing abilities</li>
+                            <li><i class="fas fa-leaf ascension-content-icon" style="margin-right: 5px;"></i><strong>Environmental Adaptation:</strong> Real-time physiological changes</li>
+                            <li><i class="fas fa-handshake ascension-content-icon" style="margin-right: 5px;"></i><strong>Organic Symbiosis:</strong> Partnership with alien lifeforms</li>
+                        </ul>
+                        <div class="quote-block" style="margin: 15px 0; padding: 15px; font-size: 0.9rem;">
+                            <i class="fas fa-quote-left ascension-content-icon" style="margin-right: 5px;"></i> <!-- Только эти иконки золотые -->
+                            "The body is not a limitation — it is an interface with the universe. Biological Ascension teaches us to speak the language of life itself."
+                        </div>
+                    </div>
+                    <div class="path-stats">
+                        <div class="stat">
+                            <span class="value">87%</span>
+                            <span class="label">Success Rate</span>
+                        </div>
+                        <div class="stat">
+                            <span class="value">214</span>
+                            <span class="label">Active Subjects</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="path-card">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-microchip ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                        </div>
+                        <h3>Cybernetic Ascension</h3>
+                    </div>
+                    <div class="path-content">
+                        <p><strong><i class="fas fa-brain ascension-content-icon" style="margin-right: 5px;"></i> Philosophy:</strong> Human consciousness transcends biological limitations through integration with advanced technology and digital networks.</p>
+                        <ul class="path-features">
+                            <li><i class="fas fa-microchip ascension-content-icon" style="margin-right: 5px;"></i><strong>Neural Implants:</strong> Direct brain-computer interface</li>
+                            <li><i class="fas fa-cog ascension-content-icon" style="margin-right: 5px;"></i><strong>Prosthetic Enhancement:</strong> Beyond-human physical capabilities</li>
+                            <li><i class="fas fa-cloud-upload-alt ascension-content-icon" style="margin-right: 5px;"></i><strong>Digital Consciousness:</strong> Backup and transfer of mind states</li>
+                            <li><i class="fas fa-network-wired ascension-content-icon" style="margin-right: 5px;"></i><strong>Network Integration:</strong> Real-time access to Ark systems</li>
+                        </ul>
+                        <div class="quote-block" style="margin: 15px 0; padding: 15px; font-size: 0.9rem;">
+                            <i class="fas fa-quote-left ascension-content-icon" style="margin-right: 5px;"></i> <!-- Только эти иконки золотые -->
+                            "Flesh fails. Circuits do not. Cybernetic Ascension is the logical progression of human evolution in a technological universe."
+                        </div>
+                    </div>
+                    <div class="path-stats">
+                        <div class="stat">
+                            <span class="value">92%</span>
+                            <span class="label">Success Rate</span>
+                        </div>
+                        <div class="stat">
+                            <span class="value">189</span>
+                            <span class="label">Active Subjects</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="path-card">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-star-of-life ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                        </div>
+                        <h3>Hybrid Ascension</h3>
+                    </div>
+                    <div class="path-content">
+                        <p><strong><i class="fas fa-brain ascension-content-icon" style="margin-right: 5px;"></i> Philosophy:</strong> The synthesis of biological and technological evolution, creating beings that are more than the sum of their parts.</p>
+                        <ul class="path-features">
+                            <li><i class="fas fa-code-merge ascension-content-icon" style="margin-right: 5px;"></i><strong>Symbiotic Systems:</strong> Organic-tech interfaces</li>
+                            <li><i class="fas fa-shapes ascension-content-icon" style="margin-right: 5px;"></i><strong>Adaptive Morphology:</strong> Body reconfiguration</li>
+                            <li><i class="fas fa-users ascension-content-icon" style="margin-right: 5px;"></i><strong>Collective Intelligence:</strong> Shared consciousness networks</li>
+                            <li><i class="fas fa-eye ascension-content-icon" style="margin-right: 5px;"></i><strong>Reality Perception:</strong> Seeing beyond three dimensions</li>
+                        </ul>
+                        <div class="quote-block" style="margin: 15px 0; padding: 15px; font-size: 0.9rem;">
+                            <i class="fas fa-quote-left ascension-content-icon" style="margin-right: 5px;"></i> <!-- Только эти иконки золотые -->
+                            "Hybrid Ascension is not a compromise — it's a transcendence. We become the bridge between biology and technology, matter and consciousness."
+                        </div>
+                    </div>
+                    <div class="path-stats">
+                        <div class="stat">
+                            <span class="value">64%</span>
+                            <span class="label">Success Rate</span>
+                        </div>
+                        <div class="stat">
+                            <span class="value">47</span>
+                            <span class="label">Active Subjects</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subject Types -->
+    <section class="section-nav">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glowing-title"><i class="fas fa-users ascension-content-icon"></i> SUBJECT CLASSIFICATIONS</h2> <!-- Только эти иконки золотые -->
+                <p class="section-subtitle">
+                    Participant categories in the Ascension Program
+                </p>
+            </div>
+            
+            <div class="subject-types">
+                <div class="subject-card">
+                    <div class="subject-icon">
+                        <i class="fas fa-user ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                    </div>
+                    <h3>Class A: Baseline Humans</h3>
+                    <p><i class="fas fa-crosshairs ascension-content-icon" style="margin-right: 5px;"></i><strong>Purpose:</strong> Control group and transition candidates</p>
+                    <p><i class="fas fa-sliders-h ascension-content-icon" style="margin-right: 5px;"></i><strong>Modifications:</strong> None or minimal</p>
+                    <p><i class="fas fa-hourglass-half ascension-content-icon" style="margin-right: 5px;"></i><strong>Status:</strong> Awaiting assignment to Ascension paths</p>
+                    <div class="path-stats" style="margin-top: 15px;">
+                        <div class="stat">
+                            <span class="value">2,847</span>
+                            <span class="label">Subjects</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subject-card">
+                    <div class="subject-icon">
+                        <i class="fas fa-dna ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                    </div>
+                    <h3>Class B: Biological Integrants</h3>
+                    <p><i class="fas fa-crosshairs ascension-content-icon" style="margin-right: 5px;"></i><strong>Purpose:</strong> Testing GCA-human compatibility</p>
+                    <p><i class="fas fa-sliders-h ascension-content-icon" style="margin-right: 5px;"></i><strong>Modifications:</strong> Alien DNA integration (10-40%)</p>
+                    <p><i class="fas fa-hourglass-half ascension-content-icon" style="margin-right: 5px;"></i><strong>Status:</strong> Active adaptation testing in Ark biomes</p>
+                    <div class="path-stats" style="margin-top: 15px;">
+                        <div class="stat">
+                            <span class="value">871</span>
+                            <span class="label">Subjects</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subject-card">
+                    <div class="subject-icon">
+                        <i class="fas fa-robot ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                    </div>
+                    <h3>Class C: Cybernetic Augments</h3>
+                    <p><i class="fas fa-crosshairs ascension-content-icon" style="margin-right: 5px;"></i><strong>Purpose:</strong> Human-machine interface development</p>
+                    <p><i class="fas fa-sliders-h ascension-content-icon" style="margin-right: 5px;"></i><strong>Modifications:</strong> 30-70% cybernetic replacement</p>
+                    <p><i class="fas fa-hourglass-half ascension-content-icon" style="margin-right: 5px;"></i><strong>Status:</strong> Network integration and capability testing</p>
+                    <div class="path-stats" style="margin-top: 15px;">
+                        <div class="stat">
+                            <span class="value">523</span>
+                            <span class="label">Subjects</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subject-card">
+                    <div class="subject-icon">
+                        <i class="fas fa-star ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                    </div>
+                    <h3>Class D: Hybrid Pioneers</h3>
+                    <p><i class="fas fa-crosshairs ascension-content-icon" style="margin-right: 5px;"></i><strong>Purpose:</strong> Ultimate Ascension form development</p>
+                    <p><i class="fas fa-sliders-h ascension-content-icon" style="margin-right: 5px;"></i><strong>Modifications:</strong> Balanced biological-cybernetic integration</p>
+                    <p><i class="fas fa-hourglass-half ascension-content-icon" style="margin-right: 5px;"></i><strong>Status:</strong> Advanced testing in extreme biomes</p>
+                    <div class="path-stats" style="margin-top: 15px;">
+                        <div class="stat">
+                            <span class="value">94</span>
+                            <span class="label">Subjects</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KOL Section -->
+    <section class="kol-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glowing-title"><i class="fas fa-clone ascension-content-icon"></i> CLONED OPTIMIZED PERSONALITIES (KOL)</h2> <!-- Только эти иконки золотые -->
+                <p class="section-subtitle">
+                    The revolutionary technology enabling risk-free Ascension testing
+                </p>
+            </div>
+            
+            <div class="era-detail">
+                <div class="era-overview">
+                    <h3><i class="fas fa-question-circle ascension-content-icon" style="margin-right: 10px;"></i> What are KOLs?</h3> <!-- Только эти иконки золотые -->
+                    <p>
+                        Cloned Optimized Personalities (КОЛы in Russian, KOLs in English) are digital duplicates 
+                        of human consciousness uploaded into synthetic bodies. This technology allows volunteers 
+                        to participate in dangerous Ascension experiments without risk to their original biological form.
+                    </p>
+                    
+                    <h3><i class="fas fa-project-diagram ascension-content-icon" style="margin-right: 10px;"></i> The KOL Process:</h3> <!-- Только эти иконки золотые -->
+                    <div class="kol-process">
+                        <div class="process-step">
+                            <div class="process-icon">
+                                <i class="fas fa-brain ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                            </div>
+                            <h4>1. Mind Scan</h4>
+                            <p>Complete neurological mapping at quantum resolution</p>
+                        </div>
+                        
+                        <div class="process-arrow">
+                            <i class="fas fa-arrow-right ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-icon">
+                                <i class="fas fa-database ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                            </div>
+                            <h4>2. Digitalization</h4>
+                            <p>Consciousness conversion to stabilized data pattern</p>
+                        </div>
+                        
+                        <div class="process-arrow">
+                            <i class="fas fa-arrow-right ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-icon">
+                                <i class="fas fa-print ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                            </div>
+                            <h4>3. Body Synthesis</h4>
+                            <p>Creation of synthetic vessel optimized for testing</p>
+                        </div>
+                        
+                        <div class="process-arrow">
+                            <i class="fas fa-arrow-right ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-icon">
+                                <i class="fas fa-upload ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                            </div>
+                            <h4>4. Integration</h4>
+                            <p>Consciousness transfer to synthetic body</p>
+                        </div>
+                    </div>
+                    
+                    <h3><i class="fas fa-award ascension-content-icon" style="margin-right: 10px;"></i> KOL Advantages:</h3> <!-- Только эти иконки золотые -->
+                    <div class="path-features">
+                        <li><i class="fas fa-shield-alt ascension-content-icon" style="margin-right: 5px;"></i><strong>Risk Elimination:</strong> Original biological body remains safe in stasis</li>
+                        <li><i class="fas fa-forward ascension-content-icon" style="margin-right: 5px;"></i><strong>Rapid Iteration:</strong> Multiple KOL copies can test different Ascension paths simultaneously</li>
+                        <li><i class="fas fa-exchange-alt ascension-content-icon" style="margin-right: 5px;"></i><strong>Experience Transfer:</strong> Successful modifications can be applied to the original</li>
+                        <li><i class="fas fa-balance-scale ascension-content-icon" style="margin-right: 5px;"></i><strong>Ethical Compliance:</strong> No permanent harm to sentient beings</li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compatibility Chart -->
+    <section class="section-nav">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glowing-title"><i class="fas fa-chart-line ascension-content-icon"></i> ASCENSION COMPATIBILITY</h2> <!-- Только эти иконки золотые -->
+                <p class="section-subtitle">
+                    Success rates and compatibility metrics across different parameters
+                </p>
+            </div>
+            
+            <div class="compatibility-chart">
+                <div class="chart-container">
+                    <div class="chart-row">
+                        <div class="chart-label">GCA DNA Compatibility</div>
+                        <div class="chart-bar">
+                            <div class="bar-fill" style="width: 78%"></div>
+                        </div>
+                        <div class="chart-value">78%</div>
+                    </div>
+                    
+                    <div class="chart-row">
+                        <div class="chart-label">Neural Cybernetic Integration</div>
+                        <div class="chart-bar">
+                            <div class="bar-fill" style="width: 92%"></div>
+                        </div>
+                        <div class="chart-value">92%</div>
+                    </div>
+                    
+                    <div class="chart-row">
+                        <div class="chart-label">Consciousness Transfer Stability</div>
+                        <div class="chart-bar">
+                            <div class="bar-fill" style="width: 85%"></div>
+                        </div>
+                        <div class="chart-value">85%</div>
+                    </div>
+                    
+                    <div class="chart-row">
+                        <div class="chart-label">Biome Adaptation Success</div>
+                        <div class="chart-bar">
+                            <div class="bar-fill" style="width: 71%"></div>
+                        </div>
+                        <div class="chart-value">71%</div>
+                    </div>
+                    
+                    <div class="chart-row">
+                        <div class="chart-label">Guardian Detection Avoidance</div>
+                        <div class="chart-bar">
+                            <div class="bar-fill" style="width: 64%"></div>
+                        </div>
+                        <div class="chart-value">64%</div>
+                    </div>
+                    
+                    <div class="chart-row">
+                        <div class="chart-label">Psychological Stability Post-Ascension</div>
+                        <div class="chart-bar">
+                            <div class="bar-fill" style="width: 89%"></div>
+                        </div>
+                        <div class="chart-value">89%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future of Ascension -->
+    <section class="paths-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glowing-title"><i class="fas fa-eye ascension-content-icon"></i> THE FUTURE OF ASCENSION</h2> <!-- Только эти иконки золотые -->
+                <p class="section-subtitle">
+                    Long-term goals and cosmic implications of the program
+                </p>
+            </div>
+            
+            <div class="era-detail">
+                <div class="era-overview">
+                    <h3><i class="fas fa-project-diagram ascension-content-icon" style="margin-right: 10px;"></i> Phase Objectives:</h3> <!-- Только эти иконки золотые -->
+                    <div class="path-visual">
+                        <div class="path-step">
+                            <div class="step-number">I</div>
+                            <div class="step-content">
+                                <h3>Current Phase (2347-2357)</h3>
+                                <p><i class="fas fa-bullseye ascension-content-icon" style="margin-right: 5px;"></i><strong>Focus:</strong> Individual Ascension optimization and KOL technology refinement</p>
+                                <p><i class="fas fa-flag-checkered ascension-content-icon" style="margin-right: 5px;"></i><strong>Goal:</strong> Create stable, reproducible Ascension protocols with 95%+ success rate</p>
+                            </div>
+                        </div>
+                        
+                        <div class="path-step">
+                            <div class="step-number">II</div>
+                            <div class="step-content">
+                                <h3>Expansion Phase (2357-2377)</h3>
+                                <p><i class="fas fa-bullseye ascension-content-icon" style="margin-right: 5px;"></i><strong>Focus:</strong> Mass Ascension and collective consciousness development</p>
+                                <p><i class="fas fa-flag-checkered ascension-content-icon" style="margin-right: 5px;"></i><strong>Goal:</strong> Transition 10% of human population to Ascended forms</p>
+                            </div>
+                        </div>
+                        
+                        <div class="path-step">
+                            <div class="step-number">III</div>
+                            <div class="step-content">
+                                <h3>Transcendence Phase (2377+)</h3>
+                                <p><i class="fas fa-bullseye ascension-content-icon" style="margin-right: 5px;"></i><strong>Focus:</strong> Post-human civilization and Gates reactivation</p>
+                                <p><i class="fas fa-flag-checkered ascension-content-icon" style="margin-right: 5px;"></i><strong>Goal:</strong> Humanity evolves beyond Guardian detection thresholds</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quote-block">
+                        <i class="fas fa-quote-left ascension-content-icon" style="margin-right: 10px; font-size: 1.5rem;"></i> <!-- Только эти иконки золотые -->
+                        "The Ascension Program is not about creating a new type of human. It is about creating 
+                        a new type of being — one that can survive not just on Earth, but in the cosmos. 
+                        One that can understand the Genesis Guides not as enemies, but as predecessors. 
+                        One that can face the Devourers not with fear, but with understanding. This is 
+                        humanity's final exam, and we will pass it."
+                        <div class="quote-author">— Celestial Engineering Directorate Manifesto, 2347</div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 40px;">
+                        <a href="index.html" class="ascension-btn" style="padding: 15px 30px; font-size: 1.1rem;">
+                            <i class="fas fa-home ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                            Return to Main Archive
+                        </a>
+                        <a href="ark.html" class="ascension-btn" style="margin-left: 20px; padding: 15px 30px; font-size: 1.1rem;">
+                            <i class="fas fa-globe-americas ascension-content-icon"></i> <!-- Только эти иконки золотые -->
+                            Explore Ark Project
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="assets/game-logo.png" alt="Game Logo" class="game-logo-footer">
+                        <div class="logo-text">
+                            <span class="title glowing-title">CELESTIAL ASCENDED</span>
+                            <span class="subtitle">ASCENSION PROGRAM ARCHIVE</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Classified materials of the Ascension Program. Access restricted to CED personnel 
+                        with Level 4 clearance or higher. Unauthorized distribution prohibited.
+                    </p>
+                    
+                    <div class="footer-social">
+                        <a href="https://www.youtube.com/@NebularkStd" target="_blank" class="social-link youtube">
+                            <i class="fab fa-youtube"></i> <!-- Без золотого свечения -->
+                        </a>
+                        <a href="https://discord.gg/gSg4av7GuH" target="_blank" class="social-link discord">
+                            <i class="fab fa-discord"></i> <!-- Без золотого свечения -->
+                        </a>
+                        <a href="https://www.roblox.com/games/140504465788557/0-0-1" target="_blank" class="social-link roblox">
+                            <i class="fas fa-gamepad"></i> <!-- Без золотого свечения -->
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>PROGRAM SECTIONS</h4>
+                        <a href="#gca">GCA Research</a>
+                        <a href="#paths">Ascension Paths</a>
+                        <a href="#subjects">Subject Classes</a>
+                        <a href="#kol">KOL Technology</a>
+                        <a href="#future">Future Phases</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>RESEARCH FACILITIES</h4>
+                        <a href="ark.html">Ark Biomes</a>
+                        <a href="#">Genetics Laboratory</a>
+                        <a href="#">Cybernetic Research</a>
+                        <a href="#">Consciousness Studies</a>
+                        <a href="#">Testing Ranges</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>DOCUMENTATION</h4>
+                        <a href="#">Protocols Database</a>
+                        <a href="#">Subject Records</a>
+                        <a href="#">Research Papers</a>
+                        <a href="#">Progress Reports</a>
+                        <a href="#">Ethical Guidelines</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>CED DIVISIONS</h4>
+                        <a href="structure.html">Project Structure</a>
+                        <a href="#">Biological Division</a>
+                        <a href="#">Cybernetic Division</a>
+                        <a href="#">Hybrid Research</a>
+                        <a href="#">Oversight Committee</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <div class="legal-text">
+                        © 2347 CELESTIAL ENGINEERING DIRECTORATE. CLASSIFIED MATERIAL.<br>
+                        Ascension Program — Priority Project Alpha. Distribution Level 4.
+                    </div>
+                    <div class="legal-links">
+                        <a href="#">Access Logs</a>
+                        <a href="#">Clearance Check</a>
+                        <a href="#">Report Incident</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Инициализация страницы Вознесения
+        document.addEventListener('DOMContentLoaded', function() {
+            initAscensionPage();
+        });
+        
+        function initAscensionPage() {
+            // Анимация для шагов
+            const steps = document.querySelectorAll('.path-step');
+            steps.forEach((step, index) => {
+                step.style.opacity = '0';
+                step.style.transform = 'translateX(-20px)';
+                setTimeout(() => {
+                    step.style.transition = 'all 0.5s ease';
+                    step.style.opacity = '1';
+                    step.style.transform = 'translateX(0)';
+                }, index * 200);
+            });
+            
+            // Анимация для карточек субъектов
+            const subjectCards = document.querySelectorAll('.subject-card');
+            subjectCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        }
+        
+        // Параллакс для страницы
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            
+            // Параллакс для заголовка
+            const title = document.querySelector('.ascension-title');
+            if (title) {
+                title.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

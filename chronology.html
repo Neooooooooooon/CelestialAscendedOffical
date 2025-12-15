@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronology | Celestial Ascended Universe Archive</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Matrix background -->
+    <div class="matrix-background"></div>
+    <div class="constellation" id="constellation"></div>
+    
+    <!-- Side stripes -->
+    <div class="accent-strip left-strip"></div>
+    <div class="accent-strip right-strip"></div>
+    
+    <!-- Background effect -->
+    <div class="bg-effect"></div>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="header-logo-container">
+                    <a href="index.html">
+                        <img src="assets/game-logo.png" alt="Game Logo" class="game-logo-small">
+                    </a>
+                    <div class="logo">
+                        <div class="logo-text">
+                            <span class="title glowing-title">CELESTIAL ASCENDED</span>
+                            <span class="subtitle">UNIVERSE ARCHIVE</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="chronology.html" class="nav-link active">Chronology</a>
+                    <a href="ark.html" class="nav-link">Ark Project</a>
+                    <a href="ascension.html" class="nav-link">Ascension</a>
+                    <a href="archive.html" class="nav-link">Archive</a>
+                    <div class="action-buttons">
+                        <a href="https://www.roblox.com/games/140504465788557/0-0-1" target="_blank" class="action-btn roblox">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Play Now</span>
+                        </a>
+                        <a href="https://discord.gg/gSg4av7GuH" target="_blank" class="action-btn discord">
+                            <i class="fab fa-discord"></i>
+                            <span>Discord</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero section for Chronology -->
+    <section class="hero timeline-hero">
+        <div class="container">
+            <!-- Large CED logo in center -->
+            <div class="hero-logo-section">
+                <div class="logo-aura"></div>
+                <img src="assets/ced-logo.png" alt="Celestial Engineering Directorate" class="ced-logo-large">
+                <div class="logo-badge">HISTORICAL ARCHIVE</div>
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="line-1 animated-title">GALACTIC</span>
+                <span class="line-2 animated-title">CHRONOLOGY</span>
+            </h1>
+            
+            <p class="hero-description">
+                From the birth of the Progenitors 6.5 billion years ago to the Isolation Era of 2347. 
+                This timeline documents the rise and fall of civilizations, the discovery of the Gates, 
+                and humanity's journey toward Ascension. Explore the key moments that shaped our universe.
+            </p>
+            
+            <div class="hero-tag">
+                <span class="tag">CLASSIFIED: TEMPORAL ARCHIVE</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline visualization -->
+    <section class="timeline-visualization-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glowing-title"><i class="fas fa-timeline"></i> INTERACTIVE TEMPORAL MAP</h2>
+                <p class="section-subtitle">
+                    Navigate through 6.5 billion years of cosmic history. Select an era to explore its key events.
+                </p>
+            </div>
+            
+            <!-- Timeline controls -->
+            <div class="timeline-controls">
+                <div class="year-selector">
+                    <span class="year-label">ERA SELECTOR</span>
+                    <input type="range" min="1" max="6" value="1" class="year-slider" id="era-slider">
+                </div>
+                <div class="current-year" id="current-era">PROGENITOR ERA</div>
+            </div>
+            
+            <!-- Quick year selection -->
+            <div class="quick-years">
+                <div class="quick-year" data-era="1">PROGENITOR ERA</div>
+                <div class="quick-year" data-era="2">EXPANSION ERA</div>
+                <div class="quick-year" data-era="3">SILENCE ERA</div>
+                <div class="quick-year" data-era="4">DISCOVERY ERA</div>
+                <div class="quick-year" data-era="5">ISOLATION ERA</div>
+                <div class="quick-year" data-era="6">ASCENSION ERA</div>
+            </div>
+            
+            <!-- Visual timeline -->
+            <div class="timeline-visualization" id="timeline-visual">
+                <!-- Central line -->
+                <div class="timeline-center-line"></div>
+                
+                <!-- Era markers -->
+                <div class="timeline-eras">
+                    <div class="era-marker" data-era="progenitors">
+                        <div class="era-dot"></div>
+                        <div class="era-label">
+                            <span class="era-name">PROGENITOR ERA</span>
+                            <span class="era-period">6.5B - 4B BCE</span>
+                        </div>
+                    </div>
+                    
+                    <div class="era-marker" data-era="expansion">
+                        <div class="era-dot"></div>
+                        <div class="era-label">
+                            <span class="era-name">EXPANSION ERA</span>
+                            <span class="era-period">4B BCE - 2024 CE</span>
+                        </div>
+                    </div>
+                    
+                    <div class="era-marker" data-era="silence">
+                        <div class="era-dot"></div>
+                        <div class="era-label">
+                            <span class="era-name">SILENCE ERA</span>
+                            <span class="era-period">2024 - 2037</span>
+                        </div>
+                    </div>
+                    
+                    <div class="era-marker" data-era="discovery">
+                        <div class="era-dot"></div>
+                        <div class="era-label">
+                            <span class="era-name">DISCOVERY ERA</span>
+                            <span class="era-period">2037 - 2224</span>
+                        </div>
+                    </div>
+                    
+                    <div class="era-marker" data-era="isolation">
+                        <div class="era-dot"></div>
+                        <div class="era-label">
+                            <span class="era-name">ISOLATION ERA</span>
+                            <span class="era-period">2224 - 2347</span>
+                        </div>
+                    </div>
+                    
+                    <div class="era-marker" data-era="ascension">
+                        <div class="era-dot"></div>
+                        <div class="era-label">
+                            <span class="era-name">ASCENSION ERA</span>
+                            <span class="era-period">2347 - PRESENT</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Events on timeline -->
+                <div class="timeline-events">
+                    <div class="timeline-event left" data-year="6.5b" data-type="progenitors" style="top: 5%;">
+                        <div class="event-marker">
+                            <div class="event-dot"></div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-year">6.5B BCE</div>
+                            <div class="event-title">Birth of the Progenitors</div>
+                            <span class="event-type event-discovery">ORIGIN</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-event right" data-year="5b" data-type="progenitors" style="top: 15%;">
+                        <div class="event-marker">
+                            <div class="event-dot"></div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-year">5B BCE</div>
+                            <div class="event-title">Genesis Gates Construction</div>
+                            <span class="event-type event-expansion">TECHNOLOGY</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-event left" data-year="4b" data-type="progenitors" style="top: 25%;">
+                        <div class="event-marker">
+                            <div class="event-dot"></div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-year">4B BCE</div>
+                            <div class="event-title">The Great Silence Protocol</div>
+                            <span class="event-type event-war">CONFLICT</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-event right" data-year="2024" data-type="silence" style="top: 45%;">
+                        <div class="event-marker">
+                            <div class="event-dot"></div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-year">2024 CE</div>
+                            <div class="event-title">Alps Anomaly Discovery</div>
+                            <span class="event-type event-discovery">DISCOVERY</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-event left" data-year="2037" data-type="discovery" style="top: 55%;">
+                        <div class="event-marker">
+                            <div class="event-dot"></div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-year">2037 CE</div>
+                            <div class="event-title">Genesis Gates Activation</div>
+                            <span class="event-type event-expansion">BREAKTHROUGH</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-event right" data-year="2224" data-type="isolation" style="top: 75%;">
+                        <div class="event-marker">
+                            <div class="event-dot"></div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-year">2224 CE</div>
+                            <div class="event-title">Three-Day War with Guardians</div>
+                            <span class="event-type event-war">WAR</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-event left" data-year="2347" data-type="ascension" style="top: 90%;">
+                        <div class="event-marker">
+                            <div class="event-dot"></div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-year">2347 CE</div>
+                            <div class="event-title">Ark Project Initiation</div>
+                            <span class="event-type event-present">PRESENT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Information panel (initially hidden) -->
+            <div class="timeline-info-panel" id="info-panel">
+                <div class="info-header">
+                    <div class="info-year" id="info-year">6.5B BCE</div>
+                    <span class="info-type event-discovery" id="info-type">ORIGIN</span>
+                </div>
+                <h3 class="info-title" id="info-title">Birth of the Progenitors</h3>
+                <p class="info-description" id="info-description">
+                    In the ancient elliptical galaxy that would later become the Milky Way, 
+                    the first and only intelligent race before humanity emerged. The Progenitors 
+                    (Genesis Guides) began their existence as soft-bodied, cube-shelled beings 
+                    with collective consciousness and regenerative immortality.
+                </p>
+                <div class="info-stats">
+                    <div class="info-stat">
+                        <div class="stat-value">6.5B</div>
+                        <div class="stat-label">YEARS AGO</div>
+                    </div>
+                    <div class="info-stat">
+                        <div class="stat-value">FIRST</div>
+                        <div class="stat-label">INTELLIGENT RACE</div>
+                    </div>
+                    <div class="info-stat">
+                        <div class="stat-value">COLLECTIVE</div>
+                        <div class="stat-label">CONSCIOUSNESS</div>
+                    </div>
+                </div>
+                <div class="info-nav">
+                    <button class="nav-btn" id="prev-event">
+                        <i class="fas fa-chevron-left"></i>
+                        PREVIOUS
+                    </button>
+                    <button class="nav-btn" id="next-event">
+                        NEXT
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed era information -->
+    <section class="detailed-eras-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glowing-title"><i class="fas fa-book-open"></i> ERA ARCHIVES</h2>
+                <p class="section-subtitle">
+                    Comprehensive documentation of each historical period in human and galactic history.
+                </p>
+            </div>
+            
+            <div class="era-detail" id="progenitor-era">
+                <div class="era-detail-header">
+                    <div class="era-detail-icon">
+                        <i class="fas fa-monument"></i>
+                    </div>
+                    <div class="era-detail-title">
+                        <h2>PROGENITOR ERA</h2>
+                        <div class="era-detail-period">6.5 Billion - 4 Billion BCE</div>
+                    </div>
+                </div>
+                
+                <div class="era-overview">
+                    The dawn of intelligent life in our galaxy. The Progenitors (Genesis Guides) emerged 
+                    as the first and only intelligent species before humanity. Over 2.5 billion years, 
+                    they evolved from biological entities into transcendent machine beings, building the 
+                    Genesis Gates network and establishing the Great Silence protocol that would shape 
+                    galactic history forever.
+                </div>
+                
+                <div class="era-events">
+                    <div class="era-event" data-event="1">
+                        <div class="event-year">6.5B BCE</div>
+                        <div class="event-content">
+                            <h4>Emergence of Progenitor Civilization</h4>
+                            <p>The first intelligent life forms appear in what was then an elliptical galaxy. 
+                            These cube-shelled beings possess collective consciousness and regenerative abilities, 
+                            laying the foundation for their unique philosophy of cosmic order.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="era-event" data-event="2">
+                        <div class="event-year">5B BCE</div>
+                        <div class="event-content">
+                            <h4>Genesis Gates Construction</h4>
+                            <p>The Progenitors begin constructing the network of Genesis Gates - instantaneous 
+                            portals connecting habitable worlds across the galaxy. This marks their transition 
+                            from planetary to galactic civilization.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="era-event" data-event="3">
+                        <div class="event-year">4B BCE</div>
+                        <div class="event-content">
+                            <h4>The Great Silence Protocol</h4>
+                            <p>To maintain cosmic order and prevent chaotic evolution of life, the Progenitors 
+                            create the Guardians and implement the Great Silence - a system that suppresses 
+                            any emerging intelligent life after it reaches a certain threshold.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="era-detail" id="expansion-era">
+                <div class="era-detail-header">
+                    <div class="era-detail-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <div class="era-detail-title">
+                        <h2>EXPANSION ERA</h2>
+                        <div class="era-detail-period">4 Billion BCE - 2024 CE</div>
+                    </div>
+                </div>
+                
+                <div class="era-overview">
+                    A period of galactic-scale engineering and eventual decline. The Progenitors reshape 
+                    the elliptical galaxy into the spiral Milky Way we know today, fleeing from the 
+                    extragalactic threat known as the Devourers. Their civilization ultimately transcends 
+                    physical form, becoming the Merged Mind that would later observe humanity's development.
+                </div>
+                
+                <div class="era-events">
+                    <div class="era-event" data-event="4">
+                        <div class="event-year">4B BCE</div>
+                        <div class="event-content">
+                            <h4>Galactic Reconstruction</h4>
+                            <p>Using unimaginable technologies, the Progenitors transform their elliptical galaxy 
+                            into a spiral structure - the nascent Milky Way. This act of cosmic engineering 
+                            represents the peak of their civilization's power.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="era-event" data-event="5">
+                        <div class="event-year">3.8B BCE</div>
+                        <div class="event-content">
+                            <h4>War with the Devourers</h4>
+                            <p>The Progenitors encounter the extragalactic Devourers - entities that consume 
+                            galaxies to combat universal entropy. Despite their advanced technology, the 
+                            Progenitors face inevitable defeat.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="era-event" data-event="6">
+                        <div class="event-year">3.7B BCE</div>
+                        <div class="event-content">
+                            <h4>Transcendence to Merged Mind</h4>
+                            <p>Facing extinction, the Progenitors perform a collective act of digitization, 
+                            merging all individual consciousnesses into the Merged Mind - a single entity 
+                            that inhabits the Genesis Gates network, observing the galaxy in silence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="era-detail" id="silence-era">
+                <div class="era-detail-header">
+                    <div class="era-detail-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="era-detail-title">
+                        <h2>SILENCE ERA</h2>
+                        <div class="era-detail-period">2024 - 2037 CE</div>
+                    </div>
+                </div>
+                
+                <div class="era-overview">
+                    Humanity's first encounter with Progenitor technology. The discovery of the Alps Anomaly 
+                    marks the beginning of a new chapter in human history, as Celestial Exp Inc (CEI) uncovers 
+                    ancient secrets buried for billions of years, setting humanity on a collision course with 
+                    the galaxy's hidden guardians.
+                </div>
+                
+                <div class="era-events">
+                    <div class="era-event" data-event="7">
+                        <div class="event-year">2024 CE</div>
+                        <div class="event-content">
+                            <h4>Alps Anomaly Discovery</h4>
+                            <p>During drilling operations in the Alps, workers discover a perfectly smooth 
+                            structure of unknown material buried 12 kilometers underground. Celestial Exp Inc 
+                            identifies it as a Genesis Gate - a 4-billion-year-old artifact of the Progenitors.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="era-event" data-event="8">
+                        <div class="event-year">2025-2036 CE</div>
+                        <div class="event-content">
+                            <h4>Genesis Gate Research</h4>
+                            <p>CEI conducts extensive research on the Genesis Gate, attempting to understand 
+                            its purpose and operation. The scientific community is divided between excitement 
+                            and caution regarding the ancient technology.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="era-event" data-event="9">
+                        <div class="event-year">2037 CE</div>
+                        <div class="event-content">
+                            <h4>Gate Activation Breakthrough</h4>
+                            <p>After 13 years of research, CEI scientists successfully activate the Genesis Gate, 
+                            revealing its function as an instantaneous portal to other worlds. Humanity stands 
+                            on the brink of a new era of exploration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="era-detail" id="discovery-era">
+                <div class="era-detail-header">
+                    <div class="era-detail-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <div class="era-detail-title">
+                        <h2>DISCOVERY ERA</h2>
+                        <div class="era-detail-period">2037 - 2224 CE</div>
+                    </div>
+                </div>
+                
+                <div class="era-overview">
+                    Humanity's golden age of expansion through the Genesis Gates. Celestial Exp Inc transforms 
+                    into the Human Alliance, a planetary government that leads humanity to technological 
+                    heights through reverse-engineering of Progenitor artifacts. Population reaches 17 billion, 
+                    but the "Great Silence" - the absence of other intelligent life - becomes increasingly ominous.
+                </div>
+                
+                <div class="era-events">
+                    <div class="era-event" data-event="10">
+                        <div class="event-year">2037 CE</div>
+                        <div class="event-content">
+                            <h4>First Gate Transit</h4>
+                            <p>The first human team travels through the activated Genesis Gate, arriving on 
+                            an Earth-like planet in another star system. This marks humanity's first step 
+                            into interstellar travel without conventional spacecraft.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="era-event" data-event="11">
+                        <div class="event-year">2045 CE</div>
+                        <div class="event-content">
+                            <h4>Formation of Human Alliance</h4>
+                            <p>CEI dissolves as a corporate entity, transferring its assets and authority 
+                            to the newly formed Human Alliance - a planetary government headquartered in 
+                            Washington D.C., unifying Earth under a single administrative body.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="era-event" data-event="12">
+                        <div class="event-year">2100-2224 CE</div>
+                        <div class="event-content">
+                            <h4>Age of Prosperity</h4>
+                            <p>Humanity enjoys nearly two centuries of unprecedented growth and technological 
+                            advancement. Through reverse-engineering of Progenitor artifacts found on other 
+                            worlds, human technology advances by leaps, though true understanding of the 
+                            ancient science remains elusive.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="era-detail" id="isolation-era">
+                <div class="era-detail-header">
+                    <div class="era-detail-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="era-detail-title">
+                        <h2>ISOLATION ERA</h2>
+                        <div class="era-detail-period">2224 - 2347 CE</div>
+                    </div>
+                </div>
+                
+                <div class="era-overview">
+                    The Three-Day War shatters humanity's golden age. The Guardians - ancient Progenitor 
+                    defense systems - awaken and nearly exterminate humanity before intervention by the 
+                    Merged Mind. With 3 billion dead and the Gates sealed, humanity enters an era of 
+                    forced isolation, realizing that survival requires fundamental evolution rather than 
+                    expansion.
+                </div>
+                
+                <div class="era-events">
+                    <div class="era-event" data-event="13">
+                        <div class="event-year">2224 CE</div>
+                        <div class="event-content">
+                            <h4>The Three-Day War</h4>
+                            <p>Massive activity around the Genesis Gates triggers the ancient Guardian 
+                            defense systems. For 72 hours, humanity faces systematic extermination by 
+                            indestructible geometric AI entities before the Merged Mind intervenes with 
+                            a reprogramming algorithm.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="era-event" data-event="14">
+                        <div class="event-year">2225 CE</div>
+                        <div class="event-content">
+                            <h4>Gates Sealed, Isolation Begins</h4>
+                            <p>In the war's aftermath, all Genesis Gates are emergency-sealed. The Human 
+                            Alliance establishes the Earth Defense Division to monitor the dormant Gates 
+                            and protect against future Guardian activity.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="era-event" data-event="15">
+                        <div class="event-year">2230 CE</div>
+                        <div class="event-content">
+                            <h4>Celestial Engineering Directorate Founded</h4>
+                            <p>The Human Alliance creates CED, combining intelligence, scientific research, 
+                            and space exploration functions. Their mission: develop the Ascension Program 
+                            to evolve humanity into a form capable of surviving in a hostile galaxy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="era-detail" id="ascension-era">
+                <div class="era-detail-header">
+                    <div class="era-detail-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="era-detail-title">
+                        <h2>ASCENSION ERA</h2>
+                        <div class="era-detail-period">2347 CE - PRESENT</div>
+                    </div>
+                </div>
+                
+                <div class="era-overview">
+                    The current age of human evolution. Under CED guidance, humanity focuses inward, 
+                    developing the Ark Project - a massive artificial ecosystem where alien DNA is studied 
+                    and the Ascension Program tests biological, cybernetic, and hybrid paths to human 
+                    enhancement. The goal: create a new form of humanity capable of reopening the Gates 
+                    and facing what lies beyond.
+                </div>
+                
+                <div class="era-events">
+                    <div class="era-event" data-event="16">
+                        <div class="event-year">2347 CE</div>
+                        <div class="event-content">
+                            <h4>Ark Project Initiation</h4>
+                            <p>CED activates the "Habitat Protocol" Directive of the Genesis Gates, 
+                            causing the Gates themselves to construct the Dome - a massive enclosed 
+                            ecosystem that becomes the Ark, humanity's laboratory for evolution.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="era-event" data-event="17">
+                        <div class="event-year">2350 CE</div>
+                        <div class="event-content">
+                            <h4>First Successful Ascension</h4>
+                            <p>The first human volunteer successfully integrates alien DNA through 
+                            the biological Ascension path, demonstrating enhanced regeneration and 
+                            environmental adaptation capabilities without loss of consciousness.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="era-event" data-event="18">
+                        <div class="event-year">PRESENT DAY</div>
+                        <div class="event-content">
+                            <h4>Ascension Program Expansion</h4>
+                            <p>The Ark Project operates at full capacity with eight distinct biomes, 
+                            each simulating different alien environments. Over 500 volunteers have 
+                            undergone Ascension procedures across biological, cybernetic, and hybrid 
+                            paths under CED supervision.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="assets/game-logo.png" alt="Game Logo" class="game-logo-footer">
+                        <div class="logo-text">
+                            <span class="title glowing-title">CELESTIAL ASCENDED</span>
+                            <span class="subtitle">PROJECT BY NEBULARK STUDIOS</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Official temporal archive of the Celestial Ascended universe. 
+                        All historical data verified and maintained by CED Historical Division.
+                    </p>
+                    
+                    <div class="footer-social">
+                        <a href="https://www.youtube.com/@NebularkStd" target="_blank" class="social-link youtube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://discord.gg/gSg4av7GuH" target="_blank" class="social-link discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://www.roblox.com/games/140504465788557/0-0-1" target="_blank" class="social-link roblox">
+                            <i class="fas fa-gamepad"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>ARCHIVE</h4>
+                        <a href="chronology.html" class="active">Chronology</a>
+                        <a href="ark.html">Ark Project</a>
+                        <a href="ascension.html">Ascension Program</a>
+                        <a href="progenitors.html">Genesis Guides</a>
+                        <a href="structure.html">Project Structure</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>ERAS</h4>
+                        <a href="#progenitor-era">Progenitor Era</a>
+                        <a href="#expansion-era">Expansion Era</a>
+                        <a href="#silence-era">Silence Era</a>
+                        <a href="#discovery-era">Discovery Era</a>
+                        <a href="#isolation-era">Isolation Era</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>RESOURCES</h4>
+                        <a href="media.html">Historical Media</a>
+                        <a href="#">Primary Sources</a>
+                        <a href="#">CED Reports</a>
+                        <a href="#">Timeline Database</a>
+                        <a href="#">Research Access</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>UNIVERSE</h4>
+                        <a href="#">Genesis Gates</a>
+                        <a href="#">Guardian Entities</a>
+                        <a href="#">Merged Mind</a>
+                        <a href="#">The Devourers</a>
+                        <a href="#">Future Projections</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <div class="legal-text">
+                        © 2347 CED HISTORICAL DIVISION. Temporal records maintained under Directive 7.<br>
+                        Chronological data subject to revision as new historical evidence emerges.
+                    </div>
+                    <div class="legal-links">
+                        <a href="#">Temporal Integrity</a>
+                        <a href="#">Archive Access</a>
+                        <a href="#">Historical Verification</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Particles -->
+    <div class="particles-container" id="particles"></div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Chronology page specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize constellation and particles from main script
+            initConstellation();
+            initParticles();
+            
+            // Timeline interaction functionality
+            const eraSlider = document.getElementById('era-slider');
+            const currentEra = document.getElementById('current-era');
+            const quickYears = document.querySelectorAll('.quick-year');
+            const eraMarkers = document.querySelectorAll('.era-marker');
+            const timelineEvents = document.querySelectorAll('.timeline-event');
+            const infoPanel = document.getElementById('info-panel');
+            
+            // Era names mapping
+            const eraNames = {
+                1: 'PROGENITOR ERA',
+                2: 'EXPANSION ERA', 
+                3: 'SILENCE ERA',
+                4: 'DISCOVERY ERA',
+                5: 'ISOLATION ERA',
+                6: 'ASCENSION ERA'
+            };
+            
+            // Era descriptions for info panel
+            const eventData = [
+                {
+                    year: '6.5B BCE',
+                    type: 'ORIGIN',
+                    title: 'Birth of the Progenitors',
+                    description: 'In the ancient elliptical galaxy that would later become the Milky Way, the first and only intelligent race before humanity emerged. The Progenitors (Genesis Guides) began their existence as soft-bodied, cube-shelled beings with collective consciousness and regenerative immortality.'
+                },
+                {
+                    year: '5B BCE', 
+                    type: 'TECHNOLOGY',
+                    title: 'Construction of Genesis Gates',
+                    description: 'The Progenitors establish the network of Genesis Gates - instantaneous portals connecting habitable worlds across the galaxy. This technological marvel represents their transition from planetary to truly galactic civilization, enabling the spread of life while maintaining control.'
+                },
+                {
+                    year: '4B BCE',
+                    type: 'CONFLICT',
+                    title: 'The Great Silence Protocol',
+                    description: 'To maintain cosmic order and prevent chaotic evolution, the Progenitors implement the Great Silence - a system that suppresses any emerging intelligent life after it reaches consciousness threshold. The Guardians are created as enforcement mechanisms for this protocol.'
+                },
+                {
+                    year: '2024 CE',
+                    type: 'DISCOVERY', 
+                    title: 'Alps Anomaly Discovery',
+                    description: 'During routine drilling operations in the Alps, workers uncover a perfectly smooth structure of unknown material buried 12 kilometers underground. Celestial Exp Inc identifies it as a Genesis Gate - humanity\'s first contact with Progenitor technology.'
+                },
+                {
+                    year: '2037 CE',
+                    type: 'BREAKTHROUGH',
+                    title: 'Genesis Gates Activation',
+                    description: 'After 13 years of research, CEI scientists successfully activate the Genesis Gate, revealing its function as an instantaneous portal to other habitable worlds. Humanity gains access to hundreds of planets across the Milky Way without conventional space travel.'
+                },
+                {
+                    year: '2224 CE',
+                    type: 'WAR',
+                    title: 'Three-Day War with Guardians',
+                    description: 'Massive human activity around the Genesis Gates triggers the ancient Guardian defense systems. For 72 hours, humanity faces systematic extermination before intervention by the Merged Mind. 3 billion perish, and the Gates are emergency-sealed.'
+                },
+                {
+                    year: '2347 CE',
+                    type: 'PRESENT',
+                    title: 'Ark Project Initiation',
+                    description: 'CED activates the "Habitat Protocol" Directive, causing the Genesis Gates to construct the Dome - the Ark. This massive artificial ecosystem becomes humanity\'s laboratory for the Ascension Program, our last hope for evolutionary survival in a hostile galaxy.'
+                }
+            ];
+            
+            let currentEventIndex = 0;
+            
+            // Update current era display
+            function updateEraDisplay(eraValue) {
+                currentEra.textContent = eraNames[eraValue];
+                
+                // Highlight corresponding quick year
+                quickYears.forEach(year => {
+                    year.classList.remove('active');
+                    if (year.dataset.era == eraValue) {
+                        year.classList.add('active');
+                    }
+                });
+                
+                // Highlight corresponding era marker
+                eraMarkers.forEach(marker => {
+                    marker.classList.remove('active');
+                });
+                
+                const eraNamesMap = {
+                    1: 'progenitors',
+                    2: 'expansion',
+                    3: 'silence', 
+                    4: 'discovery',
+                    5: 'isolation',
+                    6: 'ascension'
+                };
+                
+                const targetMarker = document.querySelector(`.era-marker[data-era="${eraNamesMap[eraValue]}"]`);
+                if (targetMarker) {
+                    targetMarker.classList.add('active');
+                }
+            }
+            
+            // Slider change event
+            eraSlider.addEventListener('input', function() {
+                updateEraDisplay(this.value);
+            });
+            
+            // Quick year click events
+            quickYears.forEach(year => {
+                year.addEventListener('click', function() {
+                    const eraValue = this.dataset.era;
+                    eraSlider.value = eraValue;
+                    updateEraDisplay(eraValue);
+                    
+                    // Scroll to corresponding era detail
+                    const eraId = {
+                        '1': 'progenitor-era',
+                        '2': 'expansion-era',
+                        '3': 'silence-era',
+                        '4': 'discovery-era',
+                        '5': 'isolation-era',
+                        '6': 'ascension-era'
+                    }[eraValue];
+                    
+                    if (eraId) {
+                        document.getElementById(eraId).scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Timeline event click events
+            timelineEvents.forEach((event, index) => {
+                event.addEventListener('click', function() {
+                    // Remove active class from all events
+                    timelineEvents.forEach(e => e.classList.remove('active'));
+                    
+                    // Add active class to clicked event
+                    this.classList.add('active');
+                    
+                    // Update info panel with event data
+                    currentEventIndex = index;
+                    updateInfoPanel(currentEventIndex);
+                    
+                    // Show info panel
+                    infoPanel.classList.add('active');
+                });
+            });
+            
+            // Update info panel with event data
+            function updateInfoPanel(index) {
+                const event = eventData[index];
+                document.getElementById('info-year').textContent = event.year;
+                document.getElementById('info-type').textContent = event.type;
+                document.getElementById('info-type').className = `info-type event-${event.type.toLowerCase()}`;
+                document.getElementById('info-title').textContent = event.title;
+                document.getElementById('info-description').textContent = event.description;
+                
+                // Update navigation buttons
+                document.getElementById('prev-event').disabled = index === 0;
+                document.getElementById('next-event').disabled = index === eventData.length - 1;
+            }
+            
+            // Navigation button events
+            document.getElementById('prev-event').addEventListener('click', function() {
+                if (currentEventIndex > 0) {
+                    currentEventIndex--;
+                    updateInfoPanel(currentEventIndex);
+                    
+                    // Update active event marker
+                    timelineEvents.forEach(e => e.classList.remove('active'));
+                    timelineEvents[currentEventIndex].classList.add('active');
+                }
+            });
+            
+            document.getElementById('next-event').addEventListener('click', function() {
+                if (currentEventIndex < eventData.length - 1) {
+                    currentEventIndex++;
+                    updateInfoPanel(currentEventIndex);
+                    
+                    // Update active event marker
+                    timelineEvents.forEach(e => e.classList.remove('active'));
+                    timelineEvents[currentEventIndex].classList.add('active');
+                }
+            });
+            
+            // Close info panel when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!infoPanel.contains(event.target) && 
+                    !event.target.closest('.timeline-event') &&
+                    infoPanel.classList.contains('active')) {
+                    infoPanel.classList.remove('active');
+                    timelineEvents.forEach(e => e.classList.remove('active'));
+                }
+            });
+            
+            // Era detail event click events
+            document.querySelectorAll('.era-event').forEach(event => {
+                event.addEventListener('click', function() {
+                    // Scroll to timeline visualization
+                    document.querySelector('.timeline-visualization-section').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Highlight corresponding event on timeline after a delay
+                    setTimeout(() => {
+                        const eventIndex = parseInt(this.dataset.event) - 1;
+                        if (eventIndex >= 0 && eventIndex < timelineEvents.length) {
+                            timelineEvents.forEach(e => e.classList.remove('active'));
+                            timelineEvents[eventIndex].classList.add('active');
+                            currentEventIndex = eventIndex;
+                            updateInfoPanel(currentEventIndex);
+                            infoPanel.classList.add('active');
+                        }
+                    }, 500);
+                });
+            });
+            
+            // Initialize with first era
+            updateEraDisplay(eraSlider.value);
+            
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#' || targetId === '#!') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        
+                        const headerOffset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Initialize mobile menu
+            initMobileMenu();
+        });
+    </script>
+</body>
+</html>

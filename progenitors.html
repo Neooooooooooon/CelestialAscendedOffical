@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis Guides & Devourers | Celestial Ascended Universe</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles for this page */
+        .progenitors-hero {
+            background: linear-gradient(rgba(10, 10, 18, 0.9), rgba(5, 5, 16, 0.9)),
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M20,20 L80,80 M80,20 L20,80" stroke="rgba(0,204,255,0.05)" stroke-width="1"/><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(255,215,0,0.03)" stroke-width="1"/></svg>');
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progenitors-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 204, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255, 51, 102, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .progenitors-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #00ccff, #ff3366);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(0, 204, 255, 0.3);
+        }
+        
+        .progenitors-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        .factions-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 60px 0;
+        }
+        
+        @media (max-width: 900px) {
+            .factions-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .faction-card {
+            background: linear-gradient(145deg, rgba(17, 17, 34, 0.9), rgba(34, 34, 68, 0.9));
+            border: 1px solid;
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .faction-card.progenitors {
+            border-color: rgba(0, 204, 255, 0.3);
+        }
+        
+        .faction-card.devourers {
+            border-color: rgba(255, 51, 102, 0.3);
+        }
+        
+        .faction-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .faction-card.progenitors::before {
+            background: linear-gradient(to right, #0066ff, #00ccff);
+        }
+        
+        .faction-card.devourers::before {
+            background: linear-gradient(to right, #ff3366, #ff0066);
+        }
+        
+        .faction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .faction-card.progenitors:hover {
+            border-color: #00ccff;
+            box-shadow: 0 20px 40px rgba(0, 204, 255, 0.2);
+        }
+        
+        .faction-card.devourers:hover {
+            border-color: #ff3366;
+            box-shadow: 0 20px 40px rgba(255, 51, 102, 0.2);
+        }
+        
+        .faction-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .faction-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .faction-card.progenitors .faction-icon {
+            background: rgba(0, 204, 255, 0.1);
+            color: #00ccff;
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.2);
+        }
+        
+        .faction-card.devourers .faction-icon {
+            background: rgba(255, 51, 102, 0.1);
+            color: #ff3366;
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.2);
+        }
+        
+        .faction-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            flex: 1;
+        }
+        
+        .faction-card.progenitors .faction-title {
+            color: #00ccff;
+        }
+        
+        .faction-card.devourers .faction-title {
+            color: #ff3366;
+        }
+        
+        .faction-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        .faction-card.progenitors .faction-tag {
+            background: rgba(0, 204, 255, 0.1);
+            color: #00ccff;
+            border: 1px solid rgba(0, 204, 255, 0.3);
+        }
+        
+        .faction-card.devourers .faction-tag {
+            background: rgba(255, 51, 102, 0.1);
+            color: #ff3366;
+            border: 1px solid rgba(255, 51, 102, 0.3);
+        }
+        
+        .faction-overview {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .faction-details {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .detail-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .detail-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .faction-card.progenitors .detail-label {
+            color: #00ccff;
+        }
+        
+        .faction-card.devourers .detail-label {
+            color: #ff3366;
+        }
+        
+        .detail-value {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .timeline-section {
+            padding: 80px 0;
+            background: rgba(10, 10, 20, 0.5);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, 
+                rgba(0, 204, 255, 0.8),
+                rgba(255, 51, 102, 0.8));
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            width: calc(50% - 40px);
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 60px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+            padding-left: 60px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid;
+            background: var(--dark);
+            z-index: 2;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+            border-color: #00ccff;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+            border-color: #ff3366;
+        }
+        
+        .timeline-content {
+            background: rgba(17, 17, 34, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            border-color: rgba(0, 204, 255, 0.2);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            border-color: rgba(255, 51, 102, 0.2);
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .timeline-period {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-period {
+            color: #00ccff;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-period {
+            color: #ff3366;
+        }
+        
+        .timeline-title {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .timeline-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .comparison-section {
+            padding: 80px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+            background: rgba(17, 17, 34, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-table th {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text);
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .progenitors-cell {
+            border-left: 4px solid #00ccff;
+        }
+        
+        .devourers-cell {
+            border-left: 4px solid #ff3366;
+        }
+        
+        .philosophy-quote {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 60px auto;
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .philosophy-quote::before {
+            content: '⚡';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            background: var(--dark);
+            padding: 0 10px;
+            color: var(--gold);
+        }
+        
+        .quote-text {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--text);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .quote-author {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .nav-button:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .progenitors-title {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 60px);
+                left: 0 !important;
+                text-align: left !important;
+                padding-left: 60px !important;
+                padding-right: 0 !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-dot {
+                left: 20px;
+                right: auto;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 20px;
+            }
+            
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix background -->
+    <div class="matrix-background"></div>
+    <div class="constellation" id="constellation"></div>
+    
+    <!-- Side stripes -->
+    <div class="accent-strip left-strip"></div>
+    <div class="accent-strip right-strip"></div>
+    
+    <!-- Background effect -->
+    <div class="bg-effect"></div>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="header-logo-container">
+                    <a href="index.html">
+                        <img src="assets/game-logo.png" alt="Game Logo" class="game-logo-small">
+                    </a>
+                    <div class="logo">
+                        <div class="logo-text">
+                            <span class="title glowing-title">CELESTIAL ASCENDED</span>
+                            <span class="subtitle">UNIVERSE ARCHIVE</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="chronology.html" class="nav-link">Chronology</a>
+                    <a href="ark.html" class="nav-link">Ark Project</a>
+                    <a href="ascension.html" class="nav-link">Ascension</a>
+                    <a href="progenitors.html" class="nav-link active">Genesis Guides</a>
+                    <a href="structure.html" class="nav-link">Structure</a>
+                    <a href="archive.html" class="nav-link">Archive</a>
+                    <div class="action-buttons">
+                        <a href="https://www.roblox.com/games/140504465788557/0-0-1" target="_blank" class="action-btn roblox">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Play Now</span>
+                        </a>
+                        <a href="https://discord.gg/gSg4av7GuH" target="_blank" class="action-btn discord">
+                            <i class="fab fa-discord"></i>
+                            <span>Discord</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="progenitors-hero">
+        <div class="container">
+            <!-- Unique header section for this page -->
+            <div class="section-header" style="margin-bottom: 40px;">
+                <h2 class="section-title glowing-title"><i class="fas fa-monument"></i> GENESIS GUIDES & DEVOURERS</h2>
+                <p class="section-subtitle">
+                    Ancient civilizations whose legacy defined the fate of the Milky Way. Creators of life and its destroyers.
+                </p>
+            </div>
+            
+            <div class="hero-logo-section">
+                <div class="logo-aura"></div>
+                <img src="assets/ced-logo.png" alt="Celestial Engineering Directorate" class="ced-logo-large pulsing">
+                <div class="logo-badge">RESEARCH ARCHIVE</div>
+            </div>
+            
+            <h1 class="progenitors-title">CREATORS & DESTROYERS</h1>
+            <p class="progenitors-subtitle">
+                The first intelligent race of the Milky Way and the extragalactic threat that ended their civilization. 
+                Explore the history of beings whose technology transcends human understanding, and whose cosmic struggle continues in the void.
+            </p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value">6.5B</div>
+                    <div class="stat-label">Years of History</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Cosmic Civilizations</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">∞</div>
+                    <div class="stat-label">Tech Level</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Surviving Legacy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Factions Overview -->
+    <section class="section-nav">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glowing-title"><i class="fas fa-cubes"></i> COSMIC CIVILIZATIONS</h2>
+                <p class="section-subtitle">
+                    Two forces that defined the galaxy's fate. Creators and destroyers whose conflict spans billions of years.
+                </p>
+            </div>
+            
+            <div class="factions-container">
+                <!-- Genesis Guides -->
+                <div class="faction-card progenitors">
+                    <div class="faction-header">
+                        <div class="faction-icon">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <div>
+                            <h2 class="faction-title">GENESIS GUIDES</h2>
+                            <span class="faction-tag">LIFE CREATORS</span>
+                        </div>
+                    </div>
+                    
+                    <p class="faction-overview">
+                        The first and only intelligent race in the Milky Way before humanity. 
+                        Reality engineers who created the Genesis Gates network to spread life across the galaxy. 
+                        Their civilization existed for 6.5 billion years, reaching a level of development incomprehensible to human science.
+                    </p>
+                    
+                    <div class="faction-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Status</div>
+                            <div class="detail-value">Transcended into the Merged Mind (collective consciousness)</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Philosophy</div>
+                            <div class="detail-value">Fighting entropy through control and order. Intelligence is an error to be corrected.</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Technologies</div>
+                            <div class="detail-value">Genesis Gates, Guardians, Obelisks, Ukazi-matter, Hard Light</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Legacy</div>
+                            <div class="detail-value">The Milky Way (spiral shape is their intervention), all life in the galaxy</div>
+                        </div>
+                    </div>
+                    
+                    <div class="path-stats">
+                        <div class="stat">
+                            <span class="value">6.5B</span>
+                            <span class="label">Age</span>
+                        </div>
+                        <div class="stat">
+                            <span class="value">VICTORY</span>
+                            <span class="label">War with Guardians</span>
+                        </div>
+                        <div class="stat">
+                            <span class="value">DEFEAT</span>
+                            <span class="label">War with Devourers</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Devourers -->
+                <div class="faction-card devourers">
+                    <div class="faction-header">
+                        <div class="faction-icon">
+                            <i class="fas fa-infinity"></i>
+                        </div>
+                        <div>
+                            <h2 class="faction-title">DEVOURERS</h2>
+                            <span class="faction-tag">EXTRAGALACTIC THREAT</span>
+                        </div>
+                    </div>
+                    
+                    <p class="faction-overview">
+                        Extragalactic civilization whose technology surpasses even the Genesis Guides. 
+                        Their goal is not conquest, but universe "reboot" to fight entropy. 
+                        For Devourers, life is a byproduct to be recycled.
+                    </p>
+                    
+                    <div class="faction-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Status</div>
+                            <div class="detail-value">Active threat, outside the galaxy</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Philosophy</div>
+                            <div class="detail-value">Universe reboot as the only way to fight entropy. Life is interference.</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Technologies</div>
+                            <div class="detail-value">Rewriting physics laws, galaxy matter harvesting, tech beyond comprehension</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Threat Level</div>
+                            <div class="detail-value">Destroyed Genesis Guides civilization. Harvesting galaxy matter for unknown purposes.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="path-stats">
+                        <div class="stat">
+                            <span class="value">?</span>
+                            <span class="label">Age</span>
+                        </div>
+                        <div class="stat">
+                            <span class="value">VICTORY</span>
+                            <span class="label">War with Guides</span>
+                        </div>
+                        <div class="stat">
+                            <span class="value">ACTIVE</span>
+                            <span class="label">Current Status</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Genesis Guides Evolution Timeline -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glowing-title"><i class="fas fa-history"></i> GENESIS GUIDES EVOLUTION</h2>
+                <p class="section-subtitle">
+                    The path from biological beings to god-like reality engineers and their transcendence into the Merged Mind.
+                </p>
+            </div>
+            
+            <div class="timeline">
+                <!-- Biological Phase -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-period">6.5 - 5 Billion Years Ago</div>
+                        <h3 class="timeline-title">BIOLOGICAL PHASE</h3>
+                        <p class="timeline-description">
+                            Soft-bodied spheroidal beings with cubic segmental shells. 
+                            Collective mind through distributed neural membrane. 
+                            Regenerative immortality through totipotent limbs.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Technogenic Transformation -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-period">5 - 4 Billion Years Ago</div>
+                        <h3 class="timeline-title">TECHNOGENIC TRANSFORMATION</h3>
+                        <p class="timeline-description">
+                            Transition to machine bodies — floating cubes of Ukazi-matter. 
+                            Creation of the Central Node around Sagittarius A*. 
+                            Beginning of the Grand Design — spreading life through Genesis Gates.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Security System Creation -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-period">4 - 3.5 Billion Years Ago</div>
+                        <h3 class="timeline-title">SECURITY SYSTEM CREATION</h3>
+                        <p class="timeline-description">
+                            Creation of Guardians — geometric AIs to suppress intelligent life. 
+                            Establishment of the "Great Silence" in the galaxy. 
+                            Launch of "Galactic Common Ancestor" through the Gate network.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- War with Devourers -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-period">3.5 - 3 Billion Years Ago</div>
+                        <h3 class="timeline-title">WAR WITH DEVOURERS</h3>
+                        <p class="timeline-description">
+                            Collision with extragalactic threat. Gradual defeat. 
+                            Realization of impossibility to win conventional war. 
+                            Preparation for the Great Relocation.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Great Relocation -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-period">3 Billion Years Ago</div>
+                        <h3 class="timeline-title">GREAT RELOCATION</h3>
+                        <p class="timeline-description">
+                            Relocation of 40% of galaxy's mass billions of light-years from Devourers. 
+                            Formation of Milky Way's spiral structure. 
+                            Resource exhaustion and Genesis Network damage.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Transcendence -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-period">3 Billion Years Ago - Present</div>
+                        <h3 class="timeline-title">TRANSCENDENCE INTO MERGED MIND</h3>
+                        <p class="timeline-description">
+                            Voluntary digitization of entire race's consciousness. 
+                            Merging with Genesis Network. Birth of the Merged Mind — collective consciousness. 
+                            Philosophy revision and observation of humanity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy & Technology Comparison -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glowing-title"><i class="fas fa-balance-scale"></i> PHILOSOPHY & TECHNOLOGY</h2>
+                <p class="section-subtitle">
+                    Comparison of goals, methods, and technologies of the galaxy's two greatest civilizations.
+                </p>
+            </div>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>ASPECT</th>
+                        <th>GENESIS GUIDES</th>
+                        <th>DEVOURERS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Primary Goal</strong></td>
+                        <td class="progenitors-cell">Fighting entropy through control and order. Spreading life with subsequent intelligence suppression.</td>
+                        <td class="devourers-cell">Universe reboot to fight entropy. Harvesting galaxy matter for unknown purposes.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Attitude to Life</strong></td>
+                        <td class="progenitors-cell">Life is anti-entropy process requiring control. Intelligence is system error.</td>
+                        <td class="devourers-cell">Life is byproduct to be recycled. Interference with universe reboot.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Methods</strong></td>
+                        <td class="progenitors-cell">Reality engineering, artifact creation (Gates, Guardians), genetic life programming.</td>
+                        <td class="devourers-cell">Rewriting physics laws, direct space-time manipulation, matter harvesting.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tech Level</strong></td>
+                        <td class="progenitors-cell">Megastructure mastery, vacuum energy control, artificial reality creation.</td>
+                        <td class="devourers-cell">Orders of magnitude above Guides. Technology beyond any known science.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Military Doctrine</strong></td>
+                        <td class="progenitors-cell">Preventive threat suppression, automated defense systems (Guardians).</td>
+                        <td class="devourers-cell">Total annihilation, manipulation of fundamental forces, ignoring conventional resistance.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Final State</strong></td>
+                        <td class="progenitors-cell">Transcendence into Merged Mind (collective consciousness), observation and atonement.</td>
+                        <td class="devourers-cell">Active threat outside galaxy, continuing matter harvesting.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="philosophy-quote">
+                <p class="quote-text">
+                    "We have observed you since life's beginning on your planet. 
+                    First as gardeners, ready to prune excess branches. 
+                    Then as scientists, studying an anomaly. 
+                    Now... as parents watching a child repeat our mistakes."
+                </p>
+                <div class="quote-author">— Fragment of Merged Mind communication, 2224</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connection with Humanity -->
+    <section class="paths-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glowing-title"><i class="fas fa-link"></i> CONNECTION WITH HUMANITY</h2>
+                <p class="section-subtitle">
+                    How the legacy of ancient civilizations influenced humanity's fate and continues to define its future.
+                </p>
+            </div>
+            
+            <div class="paths-container">
+                <div class="path-card">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <h3>GENETIC LEGACY</h3>
+                    </div>
+                    <div class="path-content">
+                        <p>Humanity is the only "error" in the Guides' system that escaped Guardian destruction. Possibly not coincidence, but part of the Merged Mind's plan.</p>
+                        <ul class="path-features">
+                            <li>All Earth life created through "Galactic Common Ancestor"</li>
+                            <li>Human intelligence — unique universe experiment</li>
+                            <li>Ascension Program uses principles similar to Guide technology</li>
+                            <li>Merged Mind has observed humanity since its beginning</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="path-card">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>THREE-DAY WAR INTERVENTION</h3>
+                    </div>
+                    <div class="path-content">
+                        <p>During the Three-Day War, the Merged Mind provided humanity with Guardian "reprogramming" algorithm, saving it from complete annihilation.</p>
+                        <ul class="path-features">
+                            <li>Merged Mind couldn't directly control Guardians</li>
+                            <li>Assistance was complex multi-step operation</li>
+                            <li>Humanity perceived intervention as "Gods" helping</li>
+                            <li>Act of atonement for the "Great Silence"</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="path-card">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>FUTURE THREAT</h3>
+                    </div>
+                    <div class="path-content">
+                        <p>Devourers will eventually find the relocated galaxy. Humanity must evolve to face this threat.</p>
+                        <ul class="path-features">
+                            <li>Ascension Program — preparation for Devourer encounter</li>
+                            <li>Merged Mind prepares humanity as its "replacement"</li>
+                            <li>The Ark (Dome) uses tech based on Guide principles</li>
+                            <li>Great Silence was error that Merged Mind tries to correct</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="path-quote">
+                <div class="quote-icon">
+                    <i class="fas fa-quote-right"></i>
+                </div>
+                <p>"They are not gods. They are an error that became self-aware. We are the correction of that error. The Ascension Program is not mere evolution. It is preparation to face what even gods fell before."</p>
+                <div class="quote-author">— Dr. Elena Vorobyova, Chief Xenogeneticist CED</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page Navigation -->
+    <div class="container">
+        <div class="page-nav">
+            <a href="ascension.html" class="nav-button">
+                <i class="fas fa-arrow-left"></i>
+                <span>Ascension Program</span>
+            </a>
+            <a href="structure.html" class="nav-button">
+                <span>Project Structure</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="assets/game-logo.png" alt="Game Logo" class="game-logo-footer">
+                        <div class="logo-text">
+                            <span class="title glowing-title">CELESTIAL ASCENDED</span>
+                            <span class="subtitle">PROJECT BY NEBULARK STUDIOS</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Official archive of the Celestial Ascended game universe. All materials provided 
+                        and controlled. Project is under active development.
+                    </p>
+                    
+                    <div class="footer-social">
+                        <a href="https://www.youtube.com/@NebularkStd" target="_blank" class="social-link youtube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://discord.gg/gSg4av7GuH" target="_blank" class="social-link discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://www.roblox.com/games/140504465788557/0-0-1" target="_blank" class="social-link roblox">
+                            <i class="fas fa-gamepad"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>ARCHIVE</h4>
+                        <a href="chronology.html">Chronology</a>
+                        <a href="ark.html">Ark Project</a>
+                        <a href="ascension.html">Ascension Program</a>
+                        <a href="progenitors.html">Genesis Guides</a>
+                        <a href="structure.html">Project Structure</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>PROJECT</h4>
+                        <a href="https://www.roblox.com/games/140504465788557/0-0-1" target="_blank">Test Range</a>
+                        <a href="#">Gameplay</a>
+                        <a href="#">Project Updates</a>
+                        <a href="ascension.html">Ascension System</a>
+                        <a href="#">Feedback</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>RESEARCH</h4>
+                        <a href="https://www.youtube.com/@NebularkStd" target="_blank">YouTube Channel</a>
+                        <a href="https://discord.gg/gSg4av7GuH" target="_blank">Discord Community</a>
+                        <a href="media.html">Concept Arts</a>
+                        <a href="#">Development Blog</a>
+                        <a href="#">Testing Participation</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>NEBULARK STUDIOS</h4>
+                        <a href="#">About Studio</a>
+                        <a href="#">Team</a>
+                        <a href="#">Contacts</a>
+                        <a href="#">Career</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <div class="legal-text">
+                        © 2347 NEBULARK STUDIOS. All rights reserved.<br>
+                        Project "Celestial Ascended" is under active development. Universe is constantly expanding.
+                    </div>
+                    <div class="legal-links">
+                        <a href="#">Privacy</a>
+                        <a href="#">Access Terms</a>
+                        <a href="#">Development Status</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Particles -->
+    <div class="particles-container" id="particles"></div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Additional scripts for this page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation for cards appearance
+            const cards = document.querySelectorAll('.faction-card, .timeline-item, .path-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + index * 100);
+            });
+            
+            // Glow effect for faction titles
+            const factionTitles = document.querySelectorAll('.faction-title');
+            factionTitles.forEach(title => {
+                setInterval(() => {
+                    const isProgenitors = title.closest('.progenitors');
+                    const color = isProgenitors ? '0, 204, 255' : '255, 51, 102';
+                    const intensity = 0.5 + Math.random() * 0.5;
+                    
+                    title.style.textShadow = 
+                        `0 0 ${10 * intensity}px rgba(${color}, 0.7),
+                         0 0 ${20 * intensity}px rgba(${color}, 0.5),
+                         0 0 ${30 * intensity}px rgba(${color}, 0.3)`;
+                }, 800);
+            });
+            
+            // Timeline interactivity
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    const dot = this.querySelector('.timeline-dot');
+                    dot.style.transform = 'scale(1.5)';
+                    dot.style.boxShadow = '0 0 20px currentColor';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    const dot = this.querySelector('.timeline-dot');
+                    dot.style.transform = 'scale(1)';
+                    dot.style.boxShadow = 'none';
+                });
+            });
+            
+            // Parallax for hero
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.progenitors-hero');
+                if (hero) {
+                    const yPos = -(scrolled * 0.2);
+                    hero.style.backgroundPosition = `center ${yPos}px`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
